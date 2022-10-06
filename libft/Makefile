@@ -10,16 +10,24 @@
 #                                                                              #
 #******************************************************************************#
 
-troubleshoot: troubleshoot.c libft.o
-	gcc -Wall -Wextra -Werror troubleshoot.c
+SRCS	=	ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c ft_strlen.c 		    ft_memset.c ft_bzero.c ft_memcpy.c ft_memmove.c ft_strlcpy.c ft_strlcat.c ft		_toupper.c ft_tolower.c ft_strchr.c ft_strrchr.c ft_strncmp.c ft_memchr.c
 
-libft.o: libft.h ft_bzero.c ft_memset.c ft_strlen.c ft_isprint.c ft_isascii.c ft_isalnum.c ft_isdigit.c ft_isalpha.c
+#missing memcmp, strnstr and atoi. also calloc strdup and  part 2 functions.
+#object target, calls sources ending with .c to compile to .o.
+OBJS	= $(SRCS:.c=.o)
 
-	gcc -Wall -Werror -Wextra ft_bzero.c
-	gcc -Wall -Werror -Wextra ft_memset.c
-	gcc -Wall -Werror -Wextra ft_strlen.c
-	gcc -Wall -Werror -Wextra ft_isprint.c
-	gcc -Wall -Werror -Wextra ft_isascii.c
-	gcc -Wall -Werror -Wextra ft_isalnum.c
-	gcc -Wall -Werror -Wextra ft_isdigit.c
-	gcc -Wall -Werror -Wextra ft_isalpha.c
+#compiler flags, -werror -wextra also include to include headerfiles
+CC	= gcc
+RM	= rm -f
+CFLAGS += -Werror -Wextra -Wall -I.
+
+all:	$(NAME)
+
+#name of target
+NAME = libft.a
+
+#entry point
+$(NAME): $(OBJ)
+	ar rcs $(NAME) $(OBJ)
+
+all: 	 $(NAME)
