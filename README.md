@@ -1,3 +1,5 @@
 # 42-portfolio
 
-libft, library of libc implementations for personal use.
+Portfolio of my projects at 42.
+
+Project one: libft, library of libc implementations for personal use.
