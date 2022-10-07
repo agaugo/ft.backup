@@ -6,7 +6,7 @@
 /*   By: hflohil- <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/04 16:38:16 by hflohil-      #+#    #+#                 */
-/*   Updated: 2022/10/04 17:09:18 by hflohil-      ########   odam.nl         */
+/*   Updated: 2022/10/05 15:50:23 by hflohil-      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,14 @@
 
 void	ft_bzero(void *s, size_t n)
 {
-	ft_memset(s, 0, sizeof(s));
+	unsigned char	*str;
+	size_t			i;
+
+	str = s;
+	i = 0;
+	while (i < n)
+	{
+		str[i] = '\0';
+		i++;
+	}
 }

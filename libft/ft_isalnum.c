@@ -6,7 +6,7 @@
 /*   By: hflohil- <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/04 13:55:12 by hflohil-      #+#    #+#                 */
-/*   Updated: 2022/10/04 16:58:27 by hflohil-      ########   odam.nl         */
+/*   Updated: 2022/10/05 13:44:59 by hflohil-      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,3 @@ int	ft_isalnum(int c)
 	else
 		return (0);
 }
-
-/*
-int	main(void)
-{
-	printf("%d", ft_isalnum('8'));
-	return (0);
-}
-*/

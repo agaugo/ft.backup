@@ -6,33 +6,33 @@
 /*   By: hflohil- <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/05 15:32:47 by hflohil-      #+#    #+#                 */
-/*   Updated: 2022/10/05 16:07:24 by hflohil-      ########   odam.nl         */
+/*   Updated: 2022/10/06 10:30:01 by hflohil-      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <string.h>
 
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
 	unsigned int	i;
 
 	i = 0;
-	while (src[i] != '\0' || i < dstsize)
+	while (i < dstsize && src[i] != '\0')
 	{
 		dst[i] = src[i];
 		i++;
 	}
 	dst[i] = '\0';
-	while (src[i] != '\0')
-		i++;
 	return (i);
 }
 /*
 int	main(void)
 {
-	char test[10];
-	printf("%zu\n", strlcpy(test, "dude", 3));
-	printf("%zu\n", ft_strlcpy(test, "dude", 3));
+	char test[10] = "assoof";
+	char test2[10] = "assoof";
+	printf("%lu\n", strlcpy(test, "gnup", sizeof(test)));
+	printf("%lu\n", ft_strlcpy(test2, "gnup", sizeof(test2)));
 	return (0);
 }
 */

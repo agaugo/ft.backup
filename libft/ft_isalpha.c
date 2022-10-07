@@ -6,7 +6,7 @@
 /*   By: hflohil- <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/04 12:58:35 by hflohil-      #+#    #+#                 */
-/*   Updated: 2022/10/04 16:59:12 by hflohil-      ########   odam.nl         */
+/*   Updated: 2022/10/05 13:54:27 by hflohil-      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,3 @@ int	ft_isalpha(int c)
 	else
 		return (0);
 }
-
-/*
-int	main(void)
-{
-	printf("%d", ft_isalpha('.'));
-	return (0);
-}
-*/

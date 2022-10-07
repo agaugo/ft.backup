@@ -6,7 +6,7 @@
 /*   By: hflohil- <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/04 14:13:14 by hflohil-      #+#    #+#                 */
-/*   Updated: 2022/10/04 16:59:24 by hflohil-      ########   odam.nl         */
+/*   Updated: 2022/10/07 13:17:56 by hflohil-      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,8 @@
 
 int	ft_isprint(int c)
 {
-	if (c >= 32 && c <= 127)
+	if (c >= 32 && c <= 126)
 		return (1);
 	else
 		return (0);
 }
-
-/*
-int	main(void)
-{
-	printf("%d", ft_isprint(23));
-	return (0);
-}
-*/

@@ -6,7 +6,7 @@
 /*   By: hflohil- <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/04 14:23:34 by hflohil-      #+#    #+#                 */
-/*   Updated: 2022/10/04 16:59:41 by hflohil-      ########   odam.nl         */
+/*   Updated: 2022/10/05 13:46:20 by hflohil-      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,3 @@ int	ft_strlen(const char *s)
 		i++;
 	return (i);
 }
-
-/*
-int	main(void)
-{
-	printf("%d", ft_strlen("       8"));
-	return (0);
-}
-*/

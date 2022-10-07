@@ -6,7 +6,7 @@
 /*   By: hflohil- <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/04 14:03:40 by hflohil-      #+#    #+#                 */
-/*   Updated: 2022/10/04 17:00:13 by hflohil-      ########   odam.nl         */
+/*   Updated: 2022/10/05 13:45:26 by hflohil-      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,3 @@ int	ft_isascii(int c)
 	else
 		return (0);
 }
-
-/*
-int	main(void)
-{
-	printf("%d", ft_isascii('2'));
-	return (0);
-}
-*/

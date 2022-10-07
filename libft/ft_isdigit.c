@@ -6,7 +6,7 @@
 /*   By: hflohil- <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/04 13:43:03 by hflohil-      #+#    #+#                 */
-/*   Updated: 2022/10/04 16:58:45 by hflohil-      ########   odam.nl         */
+/*   Updated: 2022/10/05 13:44:15 by hflohil-      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,3 @@ int	ft_isdigit(int c)
 	else
 		return (0);
 }
-
-/*
-int	main(void)
-{
-	printf("%d", ft_isdigit('a'));
-	return (0);
-}
-*/

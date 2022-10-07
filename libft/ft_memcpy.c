@@ -6,33 +6,37 @@
 /*   By: hflohil- <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/04 17:55:31 by hflohil-      #+#    #+#                 */
-/*   Updated: 2022/10/05 15:58:44 by hflohil-      ########   odam.nl         */
+/*   Updated: 2022/10/07 14:13:06 by hflohil-      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*memcpy(void *dst, const void *src, size_t n)
+void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	unsigned int	i;
-	unsigned char	*c;
-	unsigned char	*x;
+	unsigned char	*dst_buffer;
+	unsigned char	*src_buffer;
 
-	i = 0;
-	c = (unsigned char *) dst;
-	x = (unsigned char *) src;
-	while (i < n)
+	dst_buffer = (unsigned char *) dst;
+	src_buffer = (unsigned char *) src;
+	if (dst_buffer != '\0' && src_buffer != '\0')
 	{
-		c[i] = x[i];
-		i++;
+		while (n)
+		{
+			*(dst_buffer++) = *(src_buffer++);
+			n--;
+		}
 	}
 	return (dst);
 }
-
+/*
 int	main(void)
 {
-	char	dst[200];
+	char	str[17] = "wednesday my dude";
+	char	str2[17] = "wednesday my dude";
 
-	printf("%s", memcpy(dst, "monke", 4));
+	printf("%s\n", ft_memcpy(str, str + 2, sizeof(str)));
+    printf("%s\n", memcpy(str2, str2 + 2, sizeof(str2)));
 	return (0);
 }
+*/
