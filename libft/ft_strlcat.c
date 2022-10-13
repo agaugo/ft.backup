@@ -5,43 +5,50 @@
 /*                                                     +:+                    */
 /*   By: hflohil- <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/10/05 16:07:45 by hflohil-      #+#    #+#                 */
-/*   Updated: 2022/10/06 18:13:25 by hflohil-      ########   odam.nl         */
+/*   Created: 2022/10/13 14:36:09 by hflohil-      #+#    #+#                 */
+/*   Updated: 2022/10/13 14:36:09 by hflohil-      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <string.h>
 
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
+	size_t	dst_len;
+	size_t	src_len;
 	size_t	i;
-	size_t	x;
+	size_t	limit;
 
+	dst_len = ft_strlen(dst);
+	src_len = ft_strlen(src);
+	printf("%s\n", "hit");
+	limit = dstsize - 1;
 	i = 0;
-	x = 0;
-	while (dst[i] != '\0')
-		i++;
-	while (src[x] != '\0' && i < dstsize)
+	if (dstsize == 0)
+		printf("%s\n", "hit");
+		return (src_len);
+	if (dstsize < src_len)
+		printf("%s\n", "hit");
+		return (src_len + dst_len);
+	while (limit > 0 && --limit && i <= src_len)
 	{
-		dst[i] = src[x];
+		dst[dst_len + i] = src[i];
 		i++;
-		x++;
 	}
-	dst[i] = '\0';
-	return (i);
+	printf("%s\n", dst);
+	return (0);	
 }
-/*
+
+
 int	main(void)
 {
-	char	string[20]	=	"bri";
-	char	source[5]	=	"abcd";
-    char    stringb[20]	=	"bri";
-    char    sourceb[5]	=	"abcd";
-	printf("%zu\n", ft_strlcat(string, source, 20));
-	printf("%zu\n", strlcat(stringb, sourceb, 20));
-	printf("%s\n", string);
-	printf("%s\n", stringb);
-	return (0);
+	char dest[13] = "a";
+//	char dest2[14] = "a";
+
+	ft_strlcat(dest, "lorem ipsum dolor sit amet", 14);
+//	printf("%zu\n", strlcat(dest2, "lorem ipsum dolor sit amet", 14));
+//	printf("%s\n", dest);
+//	printf("%s\n", dest2);
+
+	return 0;
 }
-*/

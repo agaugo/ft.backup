@@ -15,24 +15,37 @@
 
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
-	unsigned int	i;
+	size_t	i;
 
 	i = 0;
-	while (i < dstsize && src[i] != '\0')
+	if (dstsize != 0)
 	{
-		dst[i] = src[i];
-		i++;
+		while ((dstsize - 1) != '\0' && *src)
+		{
+			*(dst++) = *(src++);
+			dstsize--;
+			i++;
+		}
+		*(dst) = '\0';
+		src -= i;
+		i = 0;
 	}
-	dst[i] = '\0';
+	while (*src)
+	{
+		i++;
+		src++;
+	}
 	return (i);
 }
 /*
 int	main(void)
 {
-	char test[10] = "assoof";
-	char test2[10] = "assoof";
-	printf("%lu\n", strlcpy(test, "gnup", sizeof(test)));
-	printf("%lu\n", ft_strlcpy(test2, "gnup", sizeof(test2)));
+	char test[30] = "broski dd";
+	char test2[30] = "broski dd";
+	printf("%lu\n", strlcpy(test, "alpha vet", 5));
+	printf("%s\n", test);
+	printf("%lu\n", ft_strlcpy(test2, "alpha vet", 5));
+	printf("%s\n", test2);
 	return (0);
 }
 */

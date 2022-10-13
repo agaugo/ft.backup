@@ -14,28 +14,32 @@
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	size_t			index;
-	unsigned int	size;
+	unsigned int	i;
+	unsigned char	*s1_cast;
+	unsigned char	*s2_cast;
 
-	index = 0;
-	size = 0;
-	while (index < n && s1[index] != '\0')
+	i = 0;
+	s1_cast = (unsigned char *)s1;
+	s2_cast = (unsigned char *)s2;
+	while (s1_cast[i] != '\0' && i < n)
 	{
-		if (s1[index] > s2[index])
-			size++;
-		else if (s1[index] < s2[index])
-			size--;
-		index++;
+		if (s1_cast[i] > s2_cast[i])
+			return (1);
+		else if (s1_cast[i] < s2_cast[i])
+			return (-1);
+		else
+			i++;
 	}
-	return (size);
+	if (i != n && s2[i] != '\0')
+		return (-1);
+	else
+		return (0);
 }
 /*
 int	main(void)
 {
-	char s1[5] = "oaaaa";
-	char s2[5] = "oadaa";
-	printf("%d\n", ft_strncmp(s1, s2, 5));
-    printf("%d\n", strncmp(s1, s2, 5));
+	printf("%d\n", ft_strncmp("1234", "1235", 4));
+    printf("%d\n", strncmp("1234", "1235", 4));
 	return 0;
 }
 */

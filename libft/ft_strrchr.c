@@ -22,22 +22,30 @@ char	*ft_strrchr(const char *s, int c)
 	len = 0;
 	target = (char *)s;
 	c_char = (char)c;
-	while (target[len] != '\0')
+	if (!(*s) && c != 0)
+		return (0);
+	while (*target)
+	{
+		target++;
 		len++;
+	}
 	while (len >= 0)
 	{
-		if (*(target + len) == c_char)
-			return (target + len);
+		if (*(target) == c_char)
+			return (target);
+		if (len == 0)
+			break ;
 		len--;
+		target--;
 	}
 	return (0);
 }
 /*
 int	main(void)
 {
-	char	str[30] = "abcdeeeefff";
-	printf("%s\n", ft_strrchr(str, 'e'));
-    printf("%s\n", strrchr(str, 'e'));
+	char	str[30] = "";
+	printf("%s\n", ft_strrchr(str, 0));
+    printf("%s\n", strrchr(str, 0));
 	return 0;
 }
 */
