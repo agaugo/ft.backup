@@ -11,52 +11,34 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-/*
+
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
-	size_t	dst_len;
-	size_t	src_len;
-	size_t	i;
-	size_t	limit;
+	size_t				i;
+	size_t				dst_len;
+	size_t				src_len;
 
+	i = 0;
 	dst_len = ft_strlen(dst);
 	src_len = ft_strlen(src);
-
-	printf("%s\n", "hit #1");
-
-	limit = dstsize - 1;
-	i = 0;
-	if (dstsize == 0)
-		printf("%s\n", "hit #2");
-		return (src_len);
-
-	if ((int)dstsize < (int)src_len)
-		printf("%s\n", "hit #3");
-		return (src_len + dst_len);
-
-	printf("%s\n", "hit #4");
-
-	while (limit > 0 && --limit && i <= src_len)
+	if (dstsize - 1 <= dst_len || dstsize == 0)
+		return (src_len + dstsize);
+	while (dst_len + i < dstsize - 1)
 	{
-		printf("%s\n", "hit #5");
 		dst[dst_len + i] = src[i];
 		i++;
 	}
-
-	printf("%s\n", "hit #6");
-	return (1);	
+	dst[dst_len + i] = '\0';
+	return (dst_len + src_len);
 }
-
+/*
 int	main(void)
 {
-	char dest[13] = "a";
-//	char dest2[14] = "a";
-
-	ft_strlcat(dest, "lorem ipsum dolor sit amet", 12);
-//	printf("%zu\n", strlcat(dest2, "lorem ipsum dolor sit amet", 14));
-//	printf("%s\n", dest);
-//	printf("%s\n", dest2);
-
-	return 0;
+	char	dest[14] = "pqrstuvwxyz";
+	char	dest_b[14] = "pqrstuvwxyz";
+	printf("%lu\n", ft_strlcat(dest, "lorem ipsum dolor sit amet", 15));
+	printf("%lu\n", strlcat(dest_b, "lorem ipsum dolor sit amet", 15));
+	printf("%s$\n", dest);
+	printf("%s$\n", dest_b);
 }
 */

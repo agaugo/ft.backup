@@ -19,37 +19,35 @@ int	ft_atoi(const char *str)
 
 	res = 0;
 	mul = 1;
-	while (*str != '\0')
+	while (*str != '\0' && *str != '\e')
 	{
+		if ((!(*str >= '0' && *str <= '9')
+				&& (*(str - 1) >= '0' && *(str - 1) <= '9'))
+			|| (!(*str >= '0' && *str <= '9') && !((*str >= 9 && *str <= 13)
+					|| *str == 32) && !(*str == '-' || *str == '+'))
+			|| ((*str == '-' || *str == '+') && !(*(str + 1) >= '0'
+					&& *(str + 1) <= '9')))
+			break ;
+		if (*str == '-' && (*(str + 1) >= '0' && *(str + 1) <= '9'))
+			mul *= -1;
 		if (*str >= '0' && *str <= '9')
 		{
 			res *= 10;
 			res += *(str) - '0';
 		}
-		if (!((*str >= 9 && *str <= 13) || *str == 32)
-			&& !(*str >= '0' && *str <= '9') 
-			&& !((*str == '-') || (*str == '+')))
-			break ;
-
-		if (((*str >= 9 && *str <= 13) || *str == 32)
-			&& !((*(str - 1) >= 9 && *(str - 1) <= 13) || *(str - 1) == 32))
-			break ;
-
-		if (((*str == '-') || (*str == '+'))
-			&& !(*(str + 1) >= '0' && *(str + 1) <= '9'))
-			break ;
-
-		if (*str == '-' && (*(str + 1) >= '0' && *(str + 1) <= '9'))
-			mul *= -1;
 		str++;
 	}
 	return (res * mul);
 }
-
+/*
 int	main(void)
 {
-	printf("%d\n", ft_atoi(" -3333"));
-	printf("%d\n", atoi(" -3333"));
+	printf("%d\n", ft_atoi("+47+5"));
+	printf("%d\n", atoi("+47+5"));
 	return (0);
 }
 
+(((*str >= 9 && *str <= 13) || *str == 32)
+				&& !((*(str - 1) >= 9 && *(str - 1) <= 13)
+					|| *(str - 1) == 32 || *(str - 1) == '\0' ))
+*/
