@@ -21,9 +21,10 @@ char	*ft_strtrim(char const *s1, char const *set)
 		return (0);
 	return (buffer);
 }
-
+/*
 int	main(void)
 {
 	printf("$%s$\n", ft_strtrim("lorem ipsum dolor sit amet", "te"));
 	return (0);
 }
+*/
