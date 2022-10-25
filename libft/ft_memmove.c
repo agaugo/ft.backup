@@ -19,7 +19,7 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 
 	dst_buffer = (unsigned char *)dst;
 	src_buffer = (unsigned char *)src;
-	if (src_buffer == '\0' && dst_buffer == '\0' && len != '\0')
+	if (src_buffer == NULL && dst_buffer == NULL && len != 0)
 		return (0);
 	else if ((src_buffer < dst_buffer) && (dst_buffer < src_buffer + len))
 	{

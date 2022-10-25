@@ -1,39 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_strchr.c                                        :+:    :+:            */
+/*   ft_memset.c                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: hflohil- <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/10/06 15:17:40 by hflohil-      #+#    #+#                 */
-/*   Updated: 2022/10/06 15:38:35 by hflohil-      ########   odam.nl         */
+/*   Created: 2022/10/04 15:36:22 by hflohil-      #+#    #+#                 */
+/*   Updated: 2022/10/06 10:49:55 by hflohil-      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strchr(const char *s, int c)
-{
-	char			*target;
-	char			c_char;
+#include "libft.h"
 
-	target = (char *)s;
-	c_char = (char)c;
-	while (*target)
-	{
-		if (*target == c_char)
-			return (target);
-		target++;
-	}
-	if (c_char == '\0')
-		return (target);
-	else
-		return (0);
-}
-
-/*
-int	main(void)
+void ft_putendl_fd(char *s, int fd)
 {
-	char str[5] = "abcde";
-	printf("%s", ft_strchr(str, 'c'));
-	return 0;
+    int i;
+
+    i = 0;
+    while (s[i] != '\0')
+    {
+        write(fd, &s[i], 1);
+        i++;
+    }
+    write(fd, "\n", 1);
 }
-*/
