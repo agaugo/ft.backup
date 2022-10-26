@@ -12,93 +12,70 @@
 
 #include "libft.h"
 
-int	size(int n)
+int	chars(int n)
 {
-	int x;
+	int	nb;
 
-	x = 0;
+	nb = 0;
 	if (n == 0)
-		return (2);
+		return (1);
 	if (n < 0)
-	{
-		x += 1;
-		n *= -1;
-	}
-	while (n)
-	{
-		n = n / 10;
-		++x;
-	}
-	return (x);
-}
-
-char	*reverse(char *buffer, int i)
-{
-	int		c;
-	char	temp;
-
-	c = 0;
-	i -= 1;
-	while (i >= c)
-	{
-		temp = buffer[i];
-		buffer[i] = buffer[c];
-		buffer[c] = temp;
-		i--;
-		c++;
-	}
-	return (buffer);
-}
-
-char	*itoa_plus(char *buffer, int n)
-{
-	int	x;
-	int i;
-
-	x = 0;
-	i = 0;
-	if (n < 0)
-	{
-		x = -1;
-		n *= -1;
-	}
+		nb += 1;
 	while (n != 0)
 	{
-		buffer[i] = (n % 10) + '0';
-		n -= n % 10;
 		n = n / 10;
-		i++;
+		nb++;
 	}
-	if (x == -1)
-		buffer[i++] = '-';
-	buffer[i] = '\0';
-	return (reverse(buffer, i));
+	return (nb);
+}
+
+char	*edge_cases(int n, char *buffer)
+{
+	if (n == 0)
+	{
+		*buffer = '0';
+		*(buffer + 1) = '\0';
+		return (buffer);
+	}
+	else
+		buffer = "-2147483648\0";
+		return (buffer);
 }
 
 char	*ft_itoa(int n)
 {
-	char	*buffer;
-
-	buffer = malloc(sizeof(char) * size(n) + 1);	
+	char			*buffer;
+	int				ri;
+	int				i;
+	if (n == -2147483648)
+		buffer = malloc(sizeof(char) * 12);
+	else
+		buffer = malloc(sizeof(char) * chars(n) + 1);
+	ri = chars(n);
+	i = ri - 1;
 	if (!buffer)
 		return (0);
-	if (n == -2147483648)
+	if (n == 0 || n== -2147483648)
+		return (edge_cases(n, buffer));
+	if (n < 0)
 	{
-		buffer = "-2147483648";
-		return (buffer);
+		buffer[0] = '-';
+		n *= -1;
 	}
-	if (n == 0)
+	while (n != 0)
 	{
-		buffer = "0";
-		return (buffer);
+		buffer[i] = n % 10 + '0';
+		n -= n % 10;
+		n = n / 10;
+		i--;
 	}
-	else
-		return (itoa_plus(buffer, n));
+	buffer[ri] = '\0';
+	return (buffer);
 }
 /*
 int main(void)
 {
-    printf("$%s$\n", ft_itoa(-283728));
+    printf("$%s$\n", ft_itoa(-2147483648));
     return 0;
 }
 */
