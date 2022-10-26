@@ -29,17 +29,11 @@ int	chars(int n)
 	return (nb);
 }
 
-char	*edge_cases(int n, char *buffer)
+char	*edge_cases(char *buffer)
 {
-	if (n == 0)
-	{
-		*buffer = '0';
-		*(buffer + 1) = '\0';
-		return (buffer);
-	}
-	else
-		buffer = "-2147483648\0";
-		return (buffer);
+	*buffer = '0';
+	*(buffer + 1) = '\0';
+	return (buffer);
 }
 
 char	*ft_itoa(int n)
@@ -47,16 +41,17 @@ char	*ft_itoa(int n)
 	char			*buffer;
 	int				ri;
 	int				i;
+
 	if (n == -2147483648)
-		buffer = malloc(sizeof(char) * 12);
+		return (ft_strdup("-2147483648"));
 	else
 		buffer = malloc(sizeof(char) * chars(n) + 1);
 	ri = chars(n);
 	i = ri - 1;
 	if (!buffer)
 		return (0);
-	if (n == 0 || n== -2147483648)
-		return (edge_cases(n, buffer));
+	if (n == 0)
+		return (edge_cases(buffer));
 	if (n < 0)
 	{
 		buffer[0] = '-';
