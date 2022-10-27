@@ -18,6 +18,8 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	char	*buffer;
 
 	i = 0;
+	if (len > (size_t)ft_strlen(s))
+		len = (size_t)ft_strlen(s);
 	if ((int)len < ft_strlen(s))
 		buffer = (char *)malloc(len + 1);
 	else
@@ -36,3 +38,11 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	buffer[i] = '\0';
 	return (buffer);
 }
+
+/*
+int	main(void)
+{
+	printf("%s\n", ft_substr("hello my friend", 3, 8));
+	return (0);
+}
+*/
