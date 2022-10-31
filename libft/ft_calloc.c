@@ -15,13 +15,10 @@
 void	*ft_calloc(size_t count, size_t size)
 {
 	char	*buffer;
-	int		i;
 
 	buffer = malloc(count * size);
-	i = 0;
 	if (!buffer)
-		return (0);
-	while (buffer[i])
-		buffer[i++] = '\0';
+		return (NULL);
+	ft_bzero(buffer, count * size);
 	return (buffer);
 }

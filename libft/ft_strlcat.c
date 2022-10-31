@@ -21,23 +21,24 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 	i = 0;
 	dst_len = ft_strlen(dst);
 	src_len = ft_strlen(src);
-	if (dstsize - 1 <= dst_len || dstsize == 0)
+	if (dstsize <= dst_len || dstsize == 0)
 		return (src_len + dstsize);
-	while (dst_len + i < dstsize - 1)
+	while (src[i] != '\0' && dst_len + i < dstsize - 1)
 	{
 		dst[dst_len + i] = src[i];
 		i++;
 	}
-	dst[dst_len + i] = '\0';
+	if (dstsize - (dst_len + i) == 1 || src[i] == '\0')
+		dst[dst_len + i] = '\0';
 	return (dst_len + src_len);
 }
 /*
 int	main(void)
 {
-	char	dest[14] = "pqrstuvwxyz";
-	char	dest_b[14] = "pqrstuvwxyz";
-	printf("%lu\n", ft_strlcat(dest, "lorem ipsum dolor sit amet", 15));
-	printf("%lu\n", strlcat(dest_b, "lorem ipsum dolor sit amet", 15));
+	char	dest[20] = "pqrstuvwxyz";
+	char	dest_b[20] = "pqrstuvwxyz";
+	printf("%lu\n", ft_strlcat(dest, "abcd", 20));
+	printf("%lu\n", strlcat(dest_b, "abcd", 20));
 	printf("%s$\n", dest);
 	printf("%s$\n", dest_b);
 }
