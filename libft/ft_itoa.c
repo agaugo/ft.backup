@@ -64,11 +64,11 @@ char	*ft_itoa(int n)
 
 	ri = chars(n);
 	i = ri - 1;
+	if (n == -2147483648)
+		return (ft_strdup("-2147483648"));
 	buffer = malloc(sizeof(char) * chars(n) + 1);
 	if (!buffer)
 		return (0);
-	if (n == -2147483648)
-		return (ft_strdup("-2147483648"));
 	return (ft_itoa_two(n, buffer, ri, i));
 }
 /*
