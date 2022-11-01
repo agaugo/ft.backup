@@ -36,20 +36,8 @@ char	*edge_cases(char *buffer)
 	return (buffer);
 }
 
-char	*ft_itoa(int n)
+char	*ft_itoa_two(int n, char *buffer, int ri, int i)
 {
-	char			*buffer;
-	int				ri;
-	int				i;
-
-	if (n == -2147483648)
-		return (ft_strdup("-2147483648"));
-	else
-		buffer = malloc(sizeof(char) * chars(n) + 1);
-	ri = chars(n);
-	i = ri - 1;
-	if (!buffer)
-		return (0);
 	if (n == 0)
 		return (edge_cases(buffer));
 	if (n < 0)
@@ -66,6 +54,22 @@ char	*ft_itoa(int n)
 	}
 	buffer[ri] = '\0';
 	return (buffer);
+}
+
+char	*ft_itoa(int n)
+{
+	char			*buffer;
+	int				ri;
+	int				i;
+
+	ri = chars(n);
+	i = ri - 1;
+	buffer = malloc(sizeof(char) * chars(n) + 1);
+	if (!buffer)
+		return (0);
+	if (n == -2147483648)
+		return (ft_strdup("-2147483648"));
+	return (ft_itoa_two(n, buffer, ri, i));
 }
 /*
 int main(void)

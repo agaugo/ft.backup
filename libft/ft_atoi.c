@@ -12,22 +12,27 @@
 
 #include "libft.h"
 
+int	ugly_if(char c, char b, char a)
+{
+	if ((!(c >= '0' && c <= '9')
+		&& (b >= '0' && b <= '9'))
+	|| (!(c >= '0' && c <= '9') && !((c >= 9 && c <= 13)
+			|| c == 32) && !(c == '-' || c == '+'))
+	|| ((c == '-' || c == '+') && !(a >= '0'
+			&& a <= '9')))
+			return (0);
+	return (1);
+}
+
 int	ft_atoi(const char *str)
 {
-	int				res;
-	int				mul;
+	int		res;
+	int		mul;
 
 	res = 0;
 	mul = 1;
-	while (*str != '\0' && *str != '\e')
+	while (*str && ugly_if(*str, *(str - 1), *(str + 1)))
 	{
-		if ((!(*str >= '0' && *str <= '9')
-				&& (*(str - 1) >= '0' && *(str - 1) <= '9'))
-			|| (!(*str >= '0' && *str <= '9') && !((*str >= 9 && *str <= 13)
-					|| *str == 32) && !(*str == '-' || *str == '+'))
-			|| ((*str == '-' || *str == '+') && !(*(str + 1) >= '0'
-					&& *(str + 1) <= '9')))
-			break ;
 		if (*str == '-' && (*(str + 1) >= '0' && *(str + 1) <= '9'))
 			mul *= -1;
 		if (*str >= '0' && *str <= '9')
@@ -42,8 +47,7 @@ int	ft_atoi(const char *str)
 /*
 int	main(void)
 {
-	printf("%d\n", ft_atoi("+47+5"));
-	printf("%d\n", atoi("+47+5"));
+	printf("%d\n", ft_atoi(" \t\v\n\r\f123"));
 	return (0);
 }
 */
