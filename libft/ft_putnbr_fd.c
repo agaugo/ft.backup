@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-int chars(int n)
+static int chars(int n)
 {
 	int	nb;
 

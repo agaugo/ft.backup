@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-void	free_mem(char **buffer_array, int i)
+static void	free_mem(char **buffer_array, int i)
 {
 	while (i >= 0)
 	{
@@ -22,7 +22,7 @@ void	free_mem(char **buffer_array, int i)
 	free(buffer_array);
 }
 
-int	substr_size(const char *s, char c, int start)
+static int	substr_size(const char *s, char c, int start)
 {
 	int	size;
 
@@ -32,7 +32,7 @@ int	substr_size(const char *s, char c, int start)
 	return (size);
 }
 
-char	**fill_array(const char *s, char **buffer_array, int elements_cnt, int c)
+static char	**fill_array(const char *s, char **buffer_array, int elements_cnt, int c)
 {
 	int	i;
 	int	start;
@@ -59,7 +59,7 @@ char	**fill_array(const char *s, char **buffer_array, int elements_cnt, int c)
 	return (buffer_array);
 }
 
-int	str_counter(char const *s, char c)
+static int	str_counter(char const *s, char c)
 {
 	int	i;
 	int	count;

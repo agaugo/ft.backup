@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-int	chars(int n)
+static int	chars(int n)
 {
 	int	nb;
 
@@ -29,14 +29,14 @@ int	chars(int n)
 	return (nb);
 }
 
-char	*edge_cases(char *buffer)
+static char	*edge_cases(char *buffer)
 {
 	*buffer = '0';
 	*(buffer + 1) = '\0';
 	return (buffer);
 }
 
-char	*ft_itoa_two(int n, char *buffer, int ri, int i)
+static char	*ft_itoa_two(int n, char *buffer, int ri, int i)
 {
 	if (n == 0)
 		return (edge_cases(buffer));
