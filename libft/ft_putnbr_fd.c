@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-static int chars(int n)
+static	int	chars(int n)
 {
 	int	nb;
 
@@ -29,14 +29,14 @@ static int chars(int n)
 	return (nb);
 }
 
-void ft_putnbr_fd(int n, int fd)
+void	ft_putnbr_fd(int n, int fd)
 {
-    char    		output[12];
-    int     		i;
+	char	output[12];
+	int		i;
 
 	if (n == -2147483648)
-		return(ft_putstr_fd("-2147483648", fd));
-    i = chars(n);
+		return (ft_putstr_fd("-2147483648", fd));
+	i = chars(n);
 	if (n < 0)
 	{
 		n *= -1;
@@ -44,14 +44,14 @@ void ft_putnbr_fd(int n, int fd)
 	}
 	output[i] = '\0';
 	i--;
-    while (i >= 0 && output[i] != '-')
-    {
-        output[i] = n % 10 + '0';
-        n -= n % 10;
-        n = n / 10;
-        i--;
-    }
-    ft_putstr_fd(output, fd);
+	while (i >= 0 && output[i] != '-')
+	{
+		output[i] = n % 10 + '0';
+		n -= n % 10;
+		n = n / 10;
+		i--;
+	}
+	ft_putstr_fd (output, fd);
 }
 /*
 int main(void)
@@ -59,5 +59,4 @@ int main(void)
     ft_putnbr_fd(-348, 1);
     return 0;
 }
-
 */

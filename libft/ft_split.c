@@ -12,14 +12,14 @@
 
 #include "libft.h"
 
-static void	free_mem(char **buffer_array, int i)
+static void	free_mem(char **array, int i)
 {
 	while (i >= 0)
 	{
-		free(buffer_array[i]);
+		free(array[i]);
 		i--;
 	}
-	free(buffer_array);
+	free(array);
 }
 
 static int	substr_size(const char *s, char c, int start)
@@ -32,7 +32,7 @@ static int	substr_size(const char *s, char c, int start)
 	return (size);
 }
 
-static char	**fill_array(const char *s, char **buffer_array, int elements_cnt, int c)
+static char	**fill_array(const char *s, char **array, int cnt, int c)
 {
 	int	i;
 	int	start;
@@ -41,22 +41,22 @@ static char	**fill_array(const char *s, char **buffer_array, int elements_cnt, i
 	i = 0;
 	start = 0;
 	size = 0;
-	while (i < elements_cnt)
+	while (i < cnt)
 	{
 		while (s[start + size] == c && s[start] != '\0')
 			start++;
 		start += size;
 		size = substr_size(s, c, start);
-		buffer_array[i] = ft_substr(s, start, substr_size(s, c, start));
-		if (!buffer_array[i])
+		array[i] = ft_substr(s, start, substr_size(s, c, start));
+		if (!array[i])
 		{
-			free_mem(buffer_array, i);
+			free_mem(array, i);
 			return (NULL);
 		}
 		i++;
 	}
-	buffer_array[i] = 0;
-	return (buffer_array);
+	array[i] = 0;
+	return (array);
 }
 
 static int	str_counter(char const *s, char c)
@@ -66,55 +66,34 @@ static int	str_counter(char const *s, char c)
 
 	i = 0;
 	count = 0;
-    while (s[i])
-    {
-        if (s[i] != c)
-        {
-            count++;
-            while (s[i] != c && s[i])
-                i++;
-        }
-        else
-            i++;
-    }
-    return (count);
+	while (s[i])
+	{
+		if (s[i] != c)
+		{
+			count++;
+			while (s[i] != c && s[i])
+				i++;
+		}
+		else
+			i++;
+	}
+	return (count);
 }
 
 char	**ft_split(char const *s, char c)
 {
-	int		elements_cnt;
-	char	**buffer_array;
+	int		cnt;
+	char	**array;
 
 	if (!s)
 		return (NULL);
-	elements_cnt = str_counter(s, c);
-	buffer_array = (char **)malloc(sizeof(char *) * (elements_cnt + 1));
-	if (!buffer_array)
+	cnt = str_counter(s, c);
+	array = (char **)malloc(sizeof(char *) * (cnt + 1));
+	if (!array)
 	{
-		free(buffer_array);
+		free(array);
 		return (NULL);
 	}
-	buffer_array = fill_array(s, buffer_array, elements_cnt, c);
-	return (buffer_array);
+	array = fill_array(s, array, cnt, c);
+	return (array);
 }
-
-/*
-int	main(void)
-{
-	printf("%s\n", ft_split("   lorem   ipsum dolor     sit amet, consectetur   adipiscing elit. Sed non risus. Suspendisse   ", ' ')[0]);
-	printf("%s\n", ft_split("   lorem   ipsum dolor     sit amet, consectetur   adipiscing elit. Sed non risus. Suspendisse   ", ' ')[1]);
-	printf("%s\n", ft_split("   lorem   ipsum dolor     sit amet, consectetur   adipiscing elit. Sed non risus. Suspendisse   ", ' ')[2]);
-	printf("%s\n", ft_split("   lorem   ipsum dolor     sit amet, consectetur   adipiscing elit. Sed non risus. Suspendisse   ", ' ')[3]);
-	printf("%s\n", ft_split("   lorem   ipsum dolor     sit amet, consectetur   adipiscing elit. Sed non risus. Suspendisse   ", ' ')[4]);
-	printf("%s\n", ft_split("   lorem   ipsum dolor     sit amet, consectetur   adipiscing elit. Sed non risus. Suspendisse   ", ' ')[5]);
-	printf("%s\n", ft_split("   lorem   ipsum dolor     sit amet, consectetur   adipiscing elit. Sed non risus. Suspendisse   ", ' ')[6]);
-	printf("%s\n", ft_split("   lorem   ipsum dolor     sit amet, consectetur   adipiscing elit. Sed non risus. Suspendisse   ", ' ')[7]);
-	printf("%s\n", ft_split("   lorem   ipsum dolor     sit amet, consectetur   adipiscing elit. Sed non risus. Suspendisse   ", ' ')[8]);
-	printf("%s\n", ft_split("   lorem   ipsum dolor     sit amet, consectetur   adipiscing elit. Sed non risus. Suspendisse   ", ' ')[9]);
-	printf("%s\n", ft_split("   lorem   ipsum dolor     sit amet, consectetur   adipiscing elit. Sed non risus. Suspendisse   ", ' ')[10]);
-	printf("%s\n", ft_split("   lorem   ipsum dolor     sit amet, consectetur   adipiscing elit. Sed non risus. Suspendisse   ", ' ')[11]);
-	printf("%s\n", ft_split("   lorem   ipsum dolor     sit amet, consectetur   adipiscing elit. Sed non risus. Suspendisse   ", ' ')[12]);
-
-	return (0);
-}
-*/
