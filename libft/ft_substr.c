@@ -18,22 +18,18 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	char	*buffer;
 
 	i = 0;
-	if (len > (size_t)ft_strlen(s))
-		len = (size_t)ft_strlen(s);
-	if ((int)len < ft_strlen(s))
-		buffer = (char *)malloc(len + 1);
-	else
-		buffer = (char *)malloc(ft_strlen(s) + 1);
+	if (len > ft_strlen(s) - start)
+		len = ft_strlen(s) - start;
+	if (start >= ft_strlen(s))
+		return (ft_strdup(""));
+	buffer = (char *)malloc(sizeof(char) * len + 1);
 	if (!buffer)
 		return (0);
-	if (!(start >= (unsigned int)ft_strlen(s)))
+	while (i < len && s[start] != '\0')
 	{
-		while (i < len && s[start] != '\0')
-		{
-			buffer[i] = s[start];
-			i++;
-			start++;
-		}
+		buffer[i] = s[start];
+		i++;
+		start++;
 	}
 	buffer[i] = '\0';
 	return (buffer);

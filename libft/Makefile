@@ -12,8 +12,7 @@
 
 NAME	= libft.a
 CC		= gcc
-RM		= rm -f *.o
-CFLAGS	+= -Werror -Wextra -Wall
+CFLAGS	= -Werror -Wextra -Wall
 
 
 SRCS 		=	ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c \
@@ -45,7 +44,6 @@ BONUS_OBJS 	=	ft_lstnew_bonus.o ft_lstadd_front_bonus.o ft_lstsize_bonus.o \
 
 
 #name of target
-
 all: $(NAME)
 
 #entry point
@@ -53,17 +51,17 @@ $(NAME):
 	$(CC) $(CFLAGS) -c $(SRCS)
 	ar rcs $(NAME) $(OBJS)
 
-clean:
-	$(RM) $(OBJS) $(BONUS_OBJS)
-
-fclean: clean
-	$(RM) $(NAME)
-
-re:		fclean all
-
 bonus:
 	$(CC) $(CFLAGS) -c $(BONUS_SRCS)
 	ar rcs $(NAME) $(BONUS_OBJS)
 
-.PHONY:
-	all re clean fclean bonus
+clean:
+	rm -f $(OBJS)
+
+fclean: clean
+	rm -f $(NAME)
+
+bclean:
+	rm -f $(BONUS_OBJS)
+
+re:		clean fclean all bclean

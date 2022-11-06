@@ -90,10 +90,7 @@ char	**ft_split(char const *s, char c)
 	cnt = str_counter(s, c);
 	array = (char **)malloc(sizeof(char *) * (cnt + 1));
 	if (!array)
-	{
-		free(array);
 		return (NULL);
-	}
 	array = fill_array(s, array, cnt, c);
 	return (array);
 }
