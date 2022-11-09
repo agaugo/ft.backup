@@ -14,7 +14,6 @@ NAME	= libft.a
 CC		= gcc
 CFLAGS	= -Werror -Wextra -Wall
 
-
 SRCS 		=	ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c \
 				ft_isprint.c ft_strlen.c ft_memset.c ft_bzero.c \
 				ft_memcpy.c ft_memmove.c ft_strlcpy.c ft_strlcat.c \
@@ -42,9 +41,8 @@ BONUS_OBJS 	=	ft_lstnew_bonus.o ft_lstadd_front_bonus.o ft_lstsize_bonus.o \
 				ft_lstlast_bonus.o ft_lstadd_back_bonus.o ft_lstdelone_bonus.o \
 				ft_lstclear_bonus.o ft_lstiter_bonus.o ft_lstmap_bonus.o
 
-
 #name of target
-all: $(NAME)
+all: $(NAME) $(BONUS)
 
 #entry point
 $(NAME):
@@ -64,4 +62,4 @@ fclean: clean
 bclean:
 	rm -f $(BONUS_OBJS)
 
-re:		clean fclean all bclean
+re:		all bonus clean bclean fclean
