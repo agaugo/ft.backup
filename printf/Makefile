@@ -10,12 +10,26 @@
 #                                                                              #
 #******************************************************************************#
 
-$(NAME):
+SRCS		=	ft_printf_utils.c ft_printf.c
+OBJS		=	ft_printf_utils.o ft_printf.o
 
-all:
+NAME	= libftprintf.a
+LIBFT	= libft/libft.a
+GCC		= gcc
+CFLAGS	= -Werror -Wextra -Wall
+
+$(NAME):
+	cd libft && make
+	cp libft/libft.a $(NAME)
+	$(GCC) $(CFLAGS) -c $(SRCS)
+	ar rcs $(NAME) $(OBJS)
+
+all: $(NAME)
 
 clean:
+	rm -f $(OBJS) && cd libft && make clean
 
-fclean:
+fclean:	clean
+	rm -f $(NAME) && cd libft && make fclean
 
-re:
+re:	all clean fclean

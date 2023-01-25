@@ -10,4 +10,22 @@
 /*                                                                            */
 /* ************************************************************************** */
 
- int	ft_printf(const char *, ...);
+#ifndef PRINTF_H
+# define PRINTF_H
+# include <unistd.h>
+# include <stdlib.h>
+# include <stdarg.h>
+# include <stdio.h>
+# include <stdint.h>
+# include "libft/libft.h"
+
+int		ft_printf(const char *, ...);
+char	*reverse_string(char *buffer, int size);
+char	*itohex(int convert);
+char	*sitohex(int convert);
+int		chars(unsigned int n);
+char	*fill_string(unsigned int n, char *buffer, int ri, int i);
+char	*itou(unsigned int n);
+char	*print_ptr(void	*arg);
+
+#endif
