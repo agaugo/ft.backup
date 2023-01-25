@@ -12,6 +12,19 @@
 
 #include "ft_printf.h"
 
+int	count_chars(char *string)
+{
+	int	result;
+
+	result = 0;
+	while(*string)
+	{
+		result++;
+		string++;
+	}
+	return (result);
+}
+
 char	*reverse_string(char *buffer, int size)
 {
 	int		index;
