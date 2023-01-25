@@ -14,15 +14,12 @@
 
 int	count_chars(char *string)
 {
-	int	result;
+	int	i;
 
-	result = 0;
-	while(*string)
-	{
-		result++;
-		string++;
-	}
-	return (result);
+	i = 0;
+	while(string[i] != '\0')
+		i++;
+	return (i);
 }
 
 char	*reverse_string(char *buffer, int size)
