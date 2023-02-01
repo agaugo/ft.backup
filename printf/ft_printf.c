@@ -49,7 +49,6 @@ int		ft_printf(const char *flag_string, ...)
 					count += count_chars(s_result);
 				}
 			}
-
 			//character
 			if (*flag_string == 'c')
 			{
@@ -62,9 +61,7 @@ int		ft_printf(const char *flag_string, ...)
 				ft_putchar_fd('%', 1);
 				count++;
 			}
-
 			//malloc:
-
 			//decimal or integer
 			if (*flag_string == 'd' || *flag_string == 'i')
 				result = ft_itoa(va_arg(args, int));
@@ -80,6 +77,8 @@ int		ft_printf(const char *flag_string, ...)
 			//pointer argument (address)
 			if (*flag_string == 'p')
 				result = print_ptr(va_arg(args, void *));
+
+			//computing chars outputted
 			if (result)
 			{
 				count += count_chars(result);
