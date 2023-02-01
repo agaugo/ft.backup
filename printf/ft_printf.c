@@ -107,12 +107,10 @@ int	main(void)
 
 //	test = 15;
 //	ptr = &test;
-	ft_printf("my printf: x: %x X: %X", -500, -500);
+	ft_printf("my printf: x: $%x$ X: $%X$", -500, -500);
 //	ft_printf("my printf: %c %s %d %i %u %% %X %x %p$", 'x', "test", 42, 420, 1000, 500, 500, ptr);
 	write(1, "\n", 1);
-	printf("printf: x: %x x: %x", 500, -500);
+	printf("printf: x: $%x$ x: $%x$", 500, -500);
 
 	return (0);
 }
-
-
