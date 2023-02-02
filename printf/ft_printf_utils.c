@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_aux.c                                       :+:    :+:            */
+/*   ft_aux.c                                       	:+:    :+:            */
 /*                                                     +:+                    */
 /*   By: hflohil- <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
@@ -12,24 +12,12 @@
 
 #include "ft_printf.h"
 
-//counts the number of chars in a string, used for computing return value in the ft_printf function
-int	count_chars(char *string)
-{
-	int	i;
-
-	i = 0;
-	while(string[i] != '\0')
-		i++;
-	return (i);
-}
-
 //reverses the string given as input and returns the reversed string. Size is passed to know where to null terminate.
 char	*reverse_string(char *buffer, int size)
 {
 	int		index;
 	int		r_index;
 	char	temp;
-
 
 	index = 0;
 	r_index = size - 1;
@@ -48,10 +36,10 @@ char	*reverse_string(char *buffer, int size)
 //converts positive int to uppercase hex
 char	*itohex(uintptr_t convert)
 {
-	char	*hex_result;
-	int		remainder;
-	char	hex_char;
-	int		i;
+	char			*hex_result;
+	uintptr_t		remainder;
+	char			hex_char;
+	uintptr_t		i;
 
 	if	(convert == 0)
 		return (ft_strdup("0"));
@@ -74,16 +62,16 @@ char	*itohex(uintptr_t convert)
 //converts positive int to loweracse hex
 char	*sitohex(uintptr_t convert, int ptr)
 {
-	char	*hex_result;
-	int		remainder;
-	char	hex_char;
-	int		i;
+	char			*hex_result;
+	uintptr_t		remainder;
+	char			hex_char;
+	uintptr_t		i;
 
 	i = 0;
-	if	(convert == 0)
-		return (ft_strdup("0"));
 	if (ptr == 1)
 		write(1, "0x", 2);
+	if	(convert == 0)
+		return (ft_strdup("0"));
 	hex_result = malloc(sizeof(char) * 50);
 	while (convert != 0)
 	{
@@ -155,4 +143,3 @@ char	*itou(unsigned int n)
 		return (0);
 	return (fill_string(n, buffer, ri, i));
 }
-
