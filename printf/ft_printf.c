@@ -70,13 +70,16 @@ int		ft_printf(const char *flag_string, ...)
 				result = itou(va_arg(args, unsigned int));
 			//capital letter hexadecimal
 			if (*flag_string == 'X')
-				result = itohex(va_arg(args, int));
+				result = itohex(va_arg(args, uintptr_t));
 			//lower case hexadecimal
 			if (*flag_string == 'x')
-				result = sitohex(va_arg(args, int));
+				result = sitohex(va_arg(args, uintptr_t), 0);
 			//pointer argument (address)
 			if (*flag_string == 'p')
-				result = print_ptr(va_arg(args, void *));
+			{
+				result = sitohex(va_arg(args, uintptr_t), 1);
+				count += 2;
+			}
 
 			//computing chars outputted
 			if (result)
@@ -98,8 +101,7 @@ int		ft_printf(const char *flag_string, ...)
 	va_end(args);
 	return (count);
 }
-
-
+/*
 int	main(void)
 {
 //	int	test;
@@ -107,10 +109,11 @@ int	main(void)
 
 //	test = 15;
 //	ptr = &test;
-	ft_printf("my printf: x: $%x$ X: $%X$", -500, -500);
+	ft_printf("my printf: x: $%x$ X: $%X$", __LONG_MAX__, __LONG_MAX__);
 //	ft_printf("my printf: %c %s %d %i %u %% %X %x %p$", 'x', "test", 42, 420, 1000, 500, 500, ptr);
 	write(1, "\n", 1);
-	printf("printf: x: $%x$ x: $%x$", 500, -500);
+	printf("printf: x: $%x$ x: $%x$", __LONG_MAX__, __LONG_MAX__);
 
 	return (0);
 }
+*/

@@ -21,8 +21,8 @@
 
 int		ft_printf(const char *, ...);
 char	*reverse_string(char *buffer, int size);
-char	*itohex(int convert);
-char	*sitohex(int convert);
+char	*itohex(uintptr_t convert);
+char	*sitohex(uintptr_t convert, int ptr);
 int		chars(unsigned int n);
 char	*fill_string(unsigned int n, char *buffer, int ri, int i);
 char	*itou(unsigned int n);

@@ -46,7 +46,7 @@ char	*reverse_string(char *buffer, int size)
 }
 
 //converts positive int to uppercase hex
-char	*itohex(int convert)
+char	*itohex(uintptr_t convert)
 {
 	char	*hex_result;
 	int		remainder;
@@ -56,7 +56,7 @@ char	*itohex(int convert)
 	if	(convert == 0)
 		return (ft_strdup("0"));
 	i = 0;
-	hex_result = malloc(sizeof(char) * 8);
+	hex_result = malloc(sizeof(char) * 50);
 	while (convert != 0)
 	{
 		remainder = convert % 16;
@@ -72,7 +72,7 @@ char	*itohex(int convert)
 }
 
 //converts positive int to loweracse hex
-char	*sitohex(int convert)
+char	*sitohex(uintptr_t convert, int ptr)
 {
 	char	*hex_result;
 	int		remainder;
@@ -82,7 +82,9 @@ char	*sitohex(int convert)
 	i = 0;
 	if	(convert == 0)
 		return (ft_strdup("0"));
-	hex_result = malloc(sizeof(char) * 8);
+	if (ptr == 1)
+		write(1, "0x", 2);
+	hex_result = malloc(sizeof(char) * 50);
 	while (convert != 0)
 	{
 		remainder = convert % 16;
@@ -154,55 +156,3 @@ char	*itou(unsigned int n)
 	return (fill_string(n, buffer, ri, i));
 }
 
-//returns the address of a pointer as a string in hex.
-char	*print_ptr(void	*arg)
-{
-	uintptr_t address;
-	char	*hex_address;
-
-	address = (uintptr_t)(&arg);
-	hex_address = sitohex(address);
-	write(1, "0x", 2);
-	return (hex_address);	
-}
-
-//to binary converter
-char	*binary(int	convert)
-{
-	char	*binary_string[16];
-	int		index;
-	int		negation;
-
-	index = 16;
-	negation = 1;
-	if (convert < 0)
-	{
-		negation = 0;
-		convert *= -1;
-	}
-	while (convert != 0)
-	{
-		if (convert % 2 == 1)
-			binary_string[index] = '1';
-		else
-			binary_string[index] = '0';
-		index--;
-	}
-	if (negation == 1)
-	{
-		while (index != 0)
-		{
-			binary_string[index] = '0';
-			index--;
-		}
-	}
-	if (negation == -1)	
-	{
-		while (index != 0)
-		{
-			binary_string[index] = '1';
-			index--;
-		}
-	}
-	return (binary_string);
-}
