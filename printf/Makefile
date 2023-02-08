@@ -10,8 +10,8 @@
 #                                                                              #
 #******************************************************************************#
 
-SRCS		=	ft_printf_utils.c ft_printf.c
-OBJS		=	ft_printf_utils.o ft_printf.o
+SRCS		=	ft_extra.c ft_hex.c ft_ptr.c ft_int.c ft_strint.c ft_printf.c
+OBJS		=	ft_extra.o ft_hex.o ft_ptr.o ft_int.o ft_strint.o ft_printf.o
 
 NAME	= libftprintf.a
 LIBFT	= libft/libft.a

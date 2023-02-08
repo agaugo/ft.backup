@@ -1,32 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_tolower.c                                       :+:    :+:            */
+/*   ft_printf.c                                        :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: hflohil- <marvin@codam.nl>                   +#+                     */
+/*   By: hflohil- <hflohil-@codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/06 15:12:58 by hflohil-      #+#    #+#                 */
 /*   Updated: 2022/10/06 15:17:13 by hflohil-      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PRINTF_H
-# define PRINTF_H
-# include <unistd.h>
-# include <stdarg.h>
-# include <stdio.h>
-# include <stdint.h>
-# include "libft/libft.h"
+#include "ft_printf.h"
 
-int		ft_printf(const char *flag_string, ...);
-int     ft_int (int arg);
-int     ft_str(char *arg);
-int     itoptr(uintptr_t convert);
-void	fill_string(unsigned int arg, char *buffer, int rev_index);
-int     itou(unsigned int);
-int     itohex(unsigned int convert, int uppercase);
-char    *ft_strrev(char *buffer, int size);
-int     chars(int n);
+int ft_int(int  arg)
+{
+    char    *buffer;
 
-#endif
+    buffer = ft_itoa(arg);
+	ft_putstr_fd(buffer, 1);
+    free(buffer);
+    return (chars(arg));
+}
 
+int ft_str(char *arg)
+{
+    if (!arg)
+    {
+        ft_putstr_fd("(null)", 1);
+        return (5);
+    }
+    ft_putstr_fd(arg, 1);
+    return (ft_strlen(arg) - 1);
+}

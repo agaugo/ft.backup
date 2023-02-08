@@ -1,32 +1,53 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_tolower.c                                       :+:    :+:            */
+/*   ft_printf.c                                        :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: hflohil- <marvin@codam.nl>                   +#+                     */
+/*   By: hflohil- <hflohil-@codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/06 15:12:58 by hflohil-      #+#    #+#                 */
 /*   Updated: 2022/10/06 15:17:13 by hflohil-      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PRINTF_H
-# define PRINTF_H
-# include <unistd.h>
-# include <stdarg.h>
-# include <stdio.h>
-# include <stdint.h>
-# include "libft/libft.h"
+#include "ft_printf.h"
 
-int		ft_printf(const char *flag_string, ...);
-int     ft_int (int arg);
-int     ft_str(char *arg);
-int     itoptr(uintptr_t convert);
-void	fill_string(unsigned int arg, char *buffer, int rev_index);
-int     itou(unsigned int);
-int     itohex(unsigned int convert, int uppercase);
-char    *ft_strrev(char *buffer, int size);
-int     chars(int n);
+char	*ft_strrev(char *buffer, int size)
+{
+	int		index;
+	int		r_index;
+	char	temp;
 
-#endif
+	index = 0;
+	r_index = size - 1;
+	while (index <= r_index)
+	{
+		temp = buffer[index];
+		buffer[index] = buffer[r_index];
+		buffer[r_index] = temp;
+		index++;
+		r_index--;
+	}
+	buffer[size] = '\0';
+	return (buffer);
+}
 
+int	chars(int n)
+{
+	int	nb;
+
+	nb = 0;
+	if (n == 0)
+		return (0);
+	if (n < 0)
+	{
+		nb++;
+		n *= -1;
+	}
+	while (n != 0)
+	{
+		n = n / 10;
+		nb++;
+	}
+	return (nb - 1);
+}

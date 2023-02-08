@@ -1,32 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_tolower.c                                       :+:    :+:            */
+/*   ft_printf.c                                        :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: hflohil- <marvin@codam.nl>                   +#+                     */
+/*   By: hflohil- <hflohil-@codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/06 15:12:58 by hflohil-      #+#    #+#                 */
 /*   Updated: 2022/10/06 15:17:13 by hflohil-      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PRINTF_H
-# define PRINTF_H
-# include <unistd.h>
-# include <stdarg.h>
-# include <stdio.h>
-# include <stdint.h>
-# include "libft/libft.h"
+#include "ft_printf.h"
 
-int		ft_printf(const char *flag_string, ...);
-int     ft_int (int arg);
-int     ft_str(char *arg);
-int     itoptr(uintptr_t convert);
-void	fill_string(unsigned int arg, char *buffer, int rev_index);
-int     itou(unsigned int);
-int     itohex(unsigned int convert, int uppercase);
-char    *ft_strrev(char *buffer, int size);
-int     chars(int n);
+int	itoptr(uintptr_t convert)
+{
+	char			*string_hex;
+	char			result[100];
+	uintptr_t		remainder;
+	uintptr_t		i;
 
-#endif
-
+	string_hex = "0123456789abcdef";
+	i = 0;
+	write(1, "0x", 2);
+	if (!convert)
+	{
+		write(1, "0", 1);
+		return(2);
+	}
+	while (convert != 0)
+	{
+		remainder = convert / 16;
+		result[i++] = string_hex[convert - (remainder * 16)];
+		convert = remainder;
+	}
+	result[i] = '\0';
+	ft_putstr_fd(ft_strrev(result, i), 1);
+	return (ft_strlen(result) + 1);
+}
