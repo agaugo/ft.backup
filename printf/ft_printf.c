@@ -14,26 +14,26 @@
 
 int	ft_printf_two(char flag, va_list args)
 {
-	int	count;
+	int	add_count;
 
-	count = 0;
+	add_count = 0;
 	if (flag == 'u')
-		count += itou(va_arg(args, unsigned int));
+		add_count += itou(va_arg(args, unsigned int));
 	if (flag == 'X')
-		count += itohex(va_arg(args, unsigned int), 1);
+		add_count += itohex(va_arg(args, unsigned int), 1);
 	if (flag == 'x')
-		count += itohex(va_arg(args, unsigned int), 0);
+		add_count += itohex(va_arg(args, unsigned int), 0);
 	if (flag == 'p')
-		count += itoptr(va_arg(args, uintptr_t));
+		add_count += itoptr(va_arg(args, uintptr_t));
 	if (flag == 's')
-		count += ft_str(va_arg(args, char *));
+		add_count += ft_str(va_arg(args, char *));
 	if (flag == 'd' || flag == 'i')
-		count += ft_int(va_arg(args, int));
+		add_count += ft_int(va_arg(args, int));
 	if (flag == 'c')
 		ft_putchar_fd(va_arg(args, int), 1);
 	if (flag == '%')
 		ft_putchar_fd('%', 1);
-	return (count);
+	return (add_count);
 }
 
 int	ft_printf(const char *flag_string, ...)
