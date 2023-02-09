@@ -10,25 +10,44 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../ft_printf.h"
 
-int ft_int(int  arg)
+char	*ft_strrev(char *buffer, int size)
 {
-    char    *buffer;
+	int		index;
+	int		r_index;
+	char	temp;
 
-    buffer = ft_itoa(arg);
-	ft_putstr_fd(buffer, 1);
-    free(buffer);
-    return (chars(arg));
+	index = 0;
+	r_index = size - 1;
+	while (index <= r_index)
+	{
+		temp = buffer[index];
+		buffer[index] = buffer[r_index];
+		buffer[r_index] = temp;
+		index++;
+		r_index--;
+	}
+	buffer[size] = '\0';
+	return (buffer);
 }
 
-int ft_str(char *arg)
+int	chars(int n)
 {
-    if (!arg)
-    {
-        ft_putstr_fd("(null)", 1);
-        return (5);
-    }
-    ft_putstr_fd(arg, 1);
-    return (ft_strlen(arg) - 1);
+	int	nb;
+
+	nb = 0;
+	if (n == 0)
+		return (0);
+	if (n < 0)
+	{
+		nb++;
+		n *= -1;
+	}
+	while (n != 0)
+	{
+		n = n / 10;
+		nb++;
+	}
+	return (nb - 1);
 }

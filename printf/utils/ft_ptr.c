@@ -10,14 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../ft_printf.h"
 
 int	itoptr(uintptr_t convert)
 {
-	char			*string_hex;
-	char			result[100];
-	uintptr_t		remainder;
-	uintptr_t		i;
+	char		*string_hex;
+	char		result[100];
+	uintptr_t	remainder;
+	uintptr_t	i;
 
 	string_hex = "0123456789abcdef";
 	i = 0;
@@ -25,7 +25,7 @@ int	itoptr(uintptr_t convert)
 	if (!convert)
 	{
 		write(1, "0", 1);
-		return(2);
+		return (2);
 	}
 	while (convert != 0)
 	{

@@ -12,7 +12,31 @@
 
 #include "ft_printf.h"
 
-int		ft_printf(const char *flag_string, ...)
+int	ft_printf_two(char flag, va_list args)
+{
+	int	count;
+
+	count = 0;
+	if (flag == 'u')
+		count += itou(va_arg(args, unsigned int));
+	if (flag == 'X')
+		count += itohex(va_arg(args, unsigned int), 1);
+	if (flag == 'x')
+		count += itohex(va_arg(args, unsigned int), 0);
+	if (flag == 'p')
+		count += itoptr(va_arg(args, uintptr_t));
+	if (flag == 's')
+		count += ft_str(va_arg(args, char *));
+	if (flag == 'd' || flag == 'i')
+		count += ft_int(va_arg(args, int));
+	if (flag == 'c')
+		ft_putchar_fd(va_arg(args, int), 1);
+	if (flag == '%')
+		ft_putchar_fd('%', 1);
+	return (count);
+}
+
+int	ft_printf(const char *flag_string, ...)
 {
 	int		count;
 	va_list	args;
@@ -24,22 +48,7 @@ int		ft_printf(const char *flag_string, ...)
 		if (*flag_string == '%')
 		{
 			flag_string++;
-			if (*flag_string == 'u')
-				count += itou(va_arg(args, unsigned int));
-			if (*flag_string == 'X')
-				count += itohex(va_arg(args, unsigned int), 1);
-			if (*flag_string == 'x')
-				count += itohex(va_arg(args, unsigned int), 0);
-			if (*flag_string == 'p')
-				count += itoptr(va_arg(args, uintptr_t));
-			if (*flag_string == 's')
-				count += ft_str(va_arg(args, char *));
-			if (*flag_string == 'd' || *flag_string == 'i')
-				count += ft_int(va_arg(args, int));
-			if (*flag_string == 'c')
-				ft_putchar_fd(va_arg(args, int), 1);
-			if (*flag_string == '%')
-				ft_putchar_fd('%', 1);
+			count += ft_printf_two(*flag_string, args);
 		}
 		else
 			ft_putchar_fd(*flag_string, 1);

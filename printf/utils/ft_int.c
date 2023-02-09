@@ -10,44 +10,54 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../ft_printf.h"
 
-char	*ft_strrev(char *buffer, int size)
+void	fill_string(unsigned int arg, char *buffer, int rev_index)
 {
-	int		index;
-	int		r_index;
-	char	temp;
+	int	i;
 
-	index = 0;
-	r_index = size - 1;
-	while (index <= r_index)
+	i = rev_index - 1;
+	if (arg == 0)
 	{
-		temp = buffer[index];
-		buffer[index] = buffer[r_index];
-		buffer[r_index] = temp;
-		index++;
-		r_index--;
+		buffer[0] = '0';
+		buffer[1] = '\0';
 	}
-	buffer[size] = '\0';
-	return (buffer);
+	while (i >= 0)
+	{
+		buffer[i] = arg % 10 + '0';
+		arg -= arg % 10;
+		arg = arg / 10;
+		i--;
+	}
+	buffer[rev_index] = '\0';
 }
 
-int	chars(int n)
+int	count_chars(unsigned int x)
 {
 	int	nb;
 
 	nb = 0;
-	if (n == 0)
+	if (x == 0)
+		return (1);
+	while (x != 0)
+	{
+		x = x / 10;
+		nb++;
+	}
+	return (nb);
+}
+
+int	itou(unsigned int arg)
+{
+	char			*buffer;
+	int				char_count;
+
+	char_count = count_chars(arg);
+	buffer = malloc(sizeof(char) * char_count + 1);
+	if (!buffer)
 		return (0);
-	if (n < 0)
-	{
-		nb++;
-		n *= -1;
-	}
-	while (n != 0)
-	{
-		n = n / 10;
-		nb++;
-	}
-	return (nb - 1);
+	fill_string(arg, buffer, char_count);
+	ft_putstr_fd(buffer, 1);
+	free(buffer);
+	return (char_count - 1);
 }
