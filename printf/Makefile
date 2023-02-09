@@ -32,4 +32,4 @@ clean:
 fclean:	clean
 	rm -f $(NAME) && cd libft && make fclean
 
-re:	all clean fclean
+re:	clean fclean all

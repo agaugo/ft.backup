@@ -45,12 +45,12 @@ int	ft_printf(const char *flag_string, ...)
 	va_start(args, flag_string);
 	while (*flag_string)
 	{
-		if (*flag_string == '%')
+		if (*flag_string == '%' && flag_string[1])
 		{
 			flag_string++;
 			count += ft_printf_two(*flag_string, args);
 		}
-		else
+		else if (*flag_string != '%')
 			ft_putchar_fd(*flag_string, 1);
 		count++;
 		flag_string++;
@@ -58,14 +58,19 @@ int	ft_printf(const char *flag_string, ...)
 	va_end(args);
 	return (count);
 }
-
 /*
 int	main(void)
 {
-	int	*ptr;
+	char	*pointer;
+	char	pointee;
 
-	*ptr = 22;
-	ft_printf("%p", ptr );
+	pointee = 'x';
+	pointer = &pointee;
+
+	int	my_count = ft_printf("test %p test %c%c%c %x alpha %X %d charlie nasty hobbit %% my precious\n", pointer,'a', 'b', 'c', 11111, 111111, 12345);
+	int	count = printf("test %p test %c%c%c %x alpha %X %d charlie nasty hobbit %% my precious\n", pointer,'a', 'b', 'c', 11111, 111111, 12345);
+	write(1,"\n", 1);
+	ft_printf("my return value: %d\npf return value: %d", my_count, count);
 	return (0);
 }
 */
