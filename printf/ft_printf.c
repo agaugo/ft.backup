@@ -53,25 +53,9 @@ int	ft_printf(const char *flag_string, ...)
 		else if (*flag_string != '%')
 			ft_putchar_fd(*flag_string, 1);
 		count++;
-		if	(*flag_string != '\0')
+		if (*flag_string)
 			flag_string++;
 	}
 	va_end(args);
 	return (count);
 }
-/*
-int	main(void)
-{
-	char	*pointer;
-	char	pointee;
-
-	pointee = 'x';
-	pointer = &pointee;
-
-	int	my_count = ft_printf("my printf: test %p test %c%c%c %x alpha  %d charlie nasty hobbit %% my precious\n", pointer,'a', 'b', 'c', 11111, 111111, 12345);
-	int	count = printf("printf: test %p test %c%c%c %x alpha  %d charlie nasty hobbit %% my precious\n", pointer,'a', 'b', 'c', 11111, 111111, 12345);
-	write(1,"\n", 1);
-	ft_printf("my return value: %d\npf return value: %d", my_count, count);
-	return (0);
-}
-*/

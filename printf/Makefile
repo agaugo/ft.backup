@@ -33,3 +33,5 @@ fclean:	clean
 	rm -f $(NAME) && cd libft && make fclean
 
 re:	clean fclean all
+
+.PHONY: all clean fclean re
