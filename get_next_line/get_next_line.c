@@ -20,20 +20,54 @@
 - Add all the helper functions you need in the get_next_line_utils.c file
 */
 
+
+// THE BUFFER SIZE IS DECLARED WHEN COMPILING THE PROGRAM. AKA gcc -D BUFFER_SIZE=42 get_next_line.c get_next_line_utils.c
 #include "get_next_line.h"
+#include <fcntl.h>
 
 char	*get_next_line(int fd)
 {
+	static char	*BUFFER;
+	char		*line;
+	int 		line_size;
+	int			bytes_read;
 
+	line_size = 0;
+	//Allocating memory for the buffer according do the BUFFER_SIZE defined when compiling the program.
+	BUFFER = malloc(sizeof(char) * BUFFER_SIZE + 1);
+	if (!BUFFER)
+		return (NULL);
+	//Reading the file and storing it in the bytes_read variable.
+	bytes_read = read(fd, BUFFER, BUFFER_SIZE);
+	if (bytes_read == 0)
+		return (NULL);
+	//Checking if the BUFFER contains a new line character at the index.
+	while (BUFFER[line_size] != '\n' && BUFFER[line_size] != '\0')
+		line_size++;
+	//Allocating memory for the line string.
+	line = malloc(sizeof(char) * line_size + 1);
+	if (!line)
+		return (NULL);
+	//Copying the BUFFER, aka the line, into the line string.
+	ft_strlcpy(line, BUFFER, line_size + 1);	
+	return (line);
 }
 
 int	main(void)
 {
 	int		fd;
 	char	*line;
-
+	//open the file.txt file and store the file descriptor in the fd variable.
 	fd = open("file.txt", O_RDONLY);
-	line = get_next_line(fd);
-	printf("%s", line);
+	if (fd < 0)
+		return (1);
+	//Calling the get_next_line function and storing the line in the line variable.
+	while((line = get_next_line(fd)) != NULL)
+	{
+		printf("%s\n", line);
+		free(line);
+	}
+	//closing the file.
+	close(fd);
 	return (0);
 }
