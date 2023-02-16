@@ -29,6 +29,11 @@ char	*get_next_line(int fd)
 
 int	main(void)
 {
-	get_next_line("123456789\n123456789");
+	int		fd;
+	char	*line;
+
+	fd = open("file.txt", O_RDONLY);
+	line = get_next_line(fd);
+	printf("%s", line);
 	return (0);
 }
