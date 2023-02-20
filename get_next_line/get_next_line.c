@@ -25,49 +25,95 @@
 #include "get_next_line.h"
 #include <fcntl.h>
 
+char	*get_full_line(int fd, char *previous_read, char	*chunk_buffer)
+{
+	int 	bytes_read;
+	char 	*temp_buffer;
+
+	bytes_read = 1;
+	while (bytes_read != 0)
+	{
+		bytes_read = read(fd, chunk_buffer, BUFFER_SIZE); 	//Read BUFFER_SIZE bytes into chunk_buffer from the file descriptor fd
+		if (bytes_read == -1)
+		{
+			free(previous_read);
+			return (0);
+		}
+		else if (bytes_read == 0)
+			break ;
+		chunk_buffer[bytes_read] = '\0';				//Null terminating chunk_buffer
+		if (!previous_read)
+			previous_read = ft_strdup("");	
+		temp_buffer = previous_read;								//Store the previous_read value in temp so that the original memory can be freed 				//If previous_read is empty (i.e., this is the first call), duplicate an empty string into it
+		previous_read = ft_strjoin(temp_buffer, chunk_buffer);		//Join the previous_read value with the chunk_buffer value
+		free(temp_buffer);
+		temp_buffer = NULL;										//Set temp to NULL because good practice
+		if (ft_strchr(chunk_buffer, '\n'))
+			break ;
+	}
+	return (previous_read);
+}
+
+char	*trim_line_buffer(char *line_buffer)
+{
+	size_t		index;
+	size_t		buffer_len;
+	char		*temp_buffer;
+
+	index = 0;
+	buffer_len = ft_strlen(line_buffer) - index;
+	while (line_buffer[index] != '\0' && line_buffer[index] != '\n')
+		index++;
+	if (line_buffer[index] == '\0' || line_buffer[1] == '\0')
+		return (0);
+	temp_buffer = ft_substr(line_buffer, index + 1, buffer_len);
+	if (*temp_buffer == '\0')
+	{
+		free(temp_buffer);
+		temp_buffer = NULL;
+	}
+	line_buffer[index + 1] = '\0';
+	return (temp_buffer);
+}
+
 char	*get_next_line(int fd)
 {
-	static char	*BUFFER;
-	char		*line;
-	int 		line_size;
-	int			bytes_read;
+	static char	*previous_read; //will store the remaining chars of the previous read after \n
+	char		*chunk_buffer; 	//will store the whole chunk of the read value of size BUFFER_SIZE
+	char		*line_buffer; 	//will store the value of the line read and wil be reurned
 
-	line_size = 0;
-	//Allocating memory for the buffer according do the BUFFER_SIZE defined when compiling the program.
-	BUFFER = malloc(sizeof(char) * BUFFER_SIZE + 1);
-	if (!BUFFER)
-		return (NULL);
-	//Reading the file and storing it in the bytes_read variable.
-	bytes_read = read(fd, BUFFER, BUFFER_SIZE);
-	if (bytes_read == 0)
-		return (NULL);
-	//Checking if the BUFFER contains a new line character at the index.
-	while (BUFFER[line_size] != '\n' && BUFFER[line_size] != '\0')
-		line_size++;
-	//Allocating memory for the line string.
-	line = malloc(sizeof(char) * line_size + 1);
-	if (!line)
-		return (NULL);
-	//Copying the BUFFER, aka the line, into the line string.
-	ft_strlcpy(line, BUFFER, line_size + 1);	
-	return (line);
+	if (fd < 0 || BUFFER_SIZE <= 0) //ERROR HANDLING // if fd or buffer size is invalid
+		return (0);
+	chunk_buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	if (!chunk_buffer) //ERROR HANDLING // if malloc fails
+		return (0);
+	line_buffer = get_full_line(fd, previous_read, chunk_buffer);
+	free(chunk_buffer);
+	chunk_buffer = NULL;
+	if (!line_buffer)
+		return (0);
+	previous_read = trim_line_buffer(line_buffer);	//Trim the line_buffer value so that it stops at the \n character, saves the remaining values to previous_read for next call.
+	return (line_buffer);
 }
 
-int	main(void)
-{
-	int		fd;
-	char	*line;
-	//open the file.txt file and store the file descriptor in the fd variable.
-	fd = open("file.txt", O_RDONLY);
-	if (fd < 0)
-		return (1);
-	//Calling the get_next_line function and storing the line in the line variable.
-	while((line = get_next_line(fd)) != NULL)
-	{
-		printf("%s\n", line);
-		free(line);
-	}
-	//closing the file.
-	close(fd);
-	return (0);
-}
+// int	main(void)
+// {
+// 	int		fd;
+// 	char	*line;
+
+// 	fd = open("file.txt", O_RDONLY);
+	
+// 	line = get_next_line(fd);
+// 	printf("%s\n", line);
+// 	free(line);
+	
+// 	line = get_next_line(fd);
+// 	printf("%s\n", line);
+// 	free(line);
+
+// 	line = get_next_line(fd);
+// 	printf("%s\n", line);
+// 	free(line);
+
+// 	return (0);
+// }

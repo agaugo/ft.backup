@@ -17,7 +17,13 @@
 # include <stdint.h>
 # include <stdlib.h>
 
+char	*ft_substr(char const *s, unsigned int start, size_t len);
+char	*ft_strdup(const char *s1);
+char	*ft_strchr(const char *s, int c);
+size_t	ft_strlen(const char *s);
+char	*ft_strjoin(char const *s1, char const *s2);
+char	*get_full_line(int fd, char *previous_read, char *chunk_buffer);
+char	*trim_line_buffer(char *line_buffer);
 char	*get_next_line(int fd);
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
 
 #endif
