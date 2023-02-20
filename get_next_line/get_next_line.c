@@ -27,7 +27,7 @@
 
 char	*get_full_line(int fd, char *previous_read, char	*chunk_buffer)
 {
-	int 	bytes_read;
+	ssize_t bytes_read;
 	char 	*temp_buffer;
 
 	bytes_read = 1;
@@ -35,19 +35,16 @@ char	*get_full_line(int fd, char *previous_read, char	*chunk_buffer)
 	{
 		bytes_read = read(fd, chunk_buffer, BUFFER_SIZE); 	//Read BUFFER_SIZE bytes into chunk_buffer from the file descriptor fd
 		if (bytes_read == -1)
-		{
-			free(previous_read);
 			return (0);
-		}
 		else if (bytes_read == 0)
 			break ;
-		chunk_buffer[bytes_read] = '\0';				//Null terminating chunk_buffer
+		chunk_buffer[bytes_read] = '\0';							//Null terminating chunk_buffer
 		if (!previous_read)
-			previous_read = ft_strdup("");	
-		temp_buffer = previous_read;								//Store the previous_read value in temp so that the original memory can be freed 				//If previous_read is empty (i.e., this is the first call), duplicate an empty string into it
+			previous_read = ft_strdup("");							//If previous_read is empty (i.e., this is the first call), duplicate an empty string into it
+		temp_buffer = previous_read;								//Store the previous_read value in temp so that the original memory can be freed 				
 		previous_read = ft_strjoin(temp_buffer, chunk_buffer);		//Join the previous_read value with the chunk_buffer value
 		free(temp_buffer);
-		temp_buffer = NULL;										//Set temp to NULL because good practice
+		temp_buffer = NULL;											//Set temp to NULL because good practice
 		if (ft_strchr(chunk_buffer, '\n'))
 			break ;
 	}
@@ -91,7 +88,11 @@ char	*get_next_line(int fd)
 	free(chunk_buffer);
 	chunk_buffer = NULL;
 	if (!line_buffer)
-		return (0);
+	{
+		free(previous_read);			//Static must be cleared when line_buffer == NULL. Consider what happens if read returns -1 in get_full_line
+		previous_read = NULL;
+		return (NULL);
+	}
 	previous_read = trim_line_buffer(line_buffer);	//Trim the line_buffer value so that it stops at the \n character, saves the remaining values to previous_read for next call.
 	return (line_buffer);
 }
