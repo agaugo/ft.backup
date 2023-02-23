@@ -21,7 +21,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	if (len > ft_strlen(s) - start)
 		len = ft_strlen(s) - start;
 	if (start >= ft_strlen(s))
-		return (ft_strdup(""));
+		return (ft_empty_string());
 	buffer = (char *)malloc(sizeof(char) * len + 1);
 	if (!buffer)
 		return (0);
@@ -35,21 +35,18 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	return (buffer);
 }
 
-char	*ft_strdup(const char *s1)
+char	*ft_empty_string(void)
 {
-	int		i;
 	char	*buffer;
 
-	i = 0;
-	buffer = malloc(ft_strlen(s1) + 1);
+	buffer = malloc(1);
 	if (!buffer)
-		return (0);
-	while (s1[i])
 	{
-		buffer[i] = s1[i];
-		i++;
+		free(buffer);
+		buffer = NULL;
+		return (NULL);
 	}
-	buffer[i] = '\0';
+	buffer[0] = '\0';
 	return (buffer);
 }
 
