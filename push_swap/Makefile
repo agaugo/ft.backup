@@ -10,24 +10,38 @@
 #                                                                              #
 #******************************************************************************#
 
-SRCS		=	push_swap.c
-OBJS		=	push_swap.o
-
-NAME	= program.o
-GCC		= gcc
+NAME    = push_swap
+CC		= gcc
 CFLAGS	= -Werror -Wextra -Wall
 
-$(NAME):
-	$(GCC) $(CFLAGS) -c $(SRCS)
+SRC_PATH    =   src/
+OBJ_PATH    =   obj/
 
-all: $(NAME)
+SRC         =	push_swap.c stack_cmds.c
+SRCS        =   $(addprefix, $(SRC_PATH), $(SRC))
+
+OBJ         =   $(SRC:.c=.o)
+OBJS		=	$(addprefix $(OBJ_PATH), $(OBJ))
+
+INC         =   -I ./include/
+
+all: $(OBJ_PATH) $(NAME)
+
+$(OBJ_PATH)%.o: $(SRC_PATH)%.c
+	$(CC) $(CFLAGS) -c $< -o $@ $(INC)
+
+$(OBJ_PATH):
+	mkdir $(OBJ_PATH)
+
+$(NAME): $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 
 clean:
-	rm -f $(OBJS)
+	rm -rf $(OBJ_PATH)
 
 fclean:	clean
 	rm -f $(NAME)
 
-re:	clean fclean all
+re:	fclean all
 
 .PHONY: all clean fclean re
