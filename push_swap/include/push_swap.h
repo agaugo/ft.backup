@@ -26,3 +26,7 @@ t_stack *ft_lstlast(t_stack *lst);
 void ft_lstadd_back(t_stack **lst, t_stack *new_node);
 void ft_lstdelone(t_stack *lst, void (*del)(void *));
 void ft_lstclear(t_stack **lst, void (*del)(void *));
+
+//misc
+int	ft_isdigit(int c);
+int	ft_atoi(const char *str);
