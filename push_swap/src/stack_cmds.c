@@ -69,7 +69,7 @@ t_stack *ft_lstlast(t_stack *lst) {
 }
 
 // Creates a new list containing a pointer, specified in parameters.
-t_stack *ft_lstnew(void *content) {
+t_stack *ft_lstnew(int content) {
   t_stack *node;
 
   node = (t_stack *)malloc(sizeof(t_stack));

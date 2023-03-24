@@ -11,52 +11,37 @@
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
-#include <stdio.h>
 
-int	**convert_to_int(int argc, char *argv[])
+int	ft_isdigit(int c)
 {
-	int	**int_array;
-	int	i;
-
-	i = 0;
-	int_array = malloc(sizeof(int *) * (argc - 1));
-	if (!int_array)
+	if (c >= '0' && c <= '9')
+		return (1);
+	else
 		return (0);
-	while (i < argc)
-	{
-		int_array[i] = malloc(sizeof(int));
-		if (!int_array[i])
-			return (0);
-		*int_array[i] = ft_atoi(*argv);
-		i++;
-	}
-	return (int_array);
 }
 
-int main(int argc, char *argv[])
+int	ft_atoi(const char *str)
 {
-	t_stack	**stack_a;
-	t_stack *current_node;
-	int		**int_array;
-	int		i;
+	int				base;
+	int				sign;
 
-	i = 0;
-	if (argc == 1)
+	base = 0;
+	sign = 1;
+	while (*str != '\0')
 	{
-		write(1, "Error: no input.\n", 17);
-		return (0);
+		if (*str == '-' || *str == '+')
+		{
+			if (*str == '-')
+				sign *= -1;
+			str++;
+		}
+		while (ft_isdigit(*str))
+		{
+			base *= 10;
+			base += *(str) - '0';
+			str++;
+		}
+		break ;
 	}
-	int_array = convert_to_int(argc, argv);
-	stack_a = malloc(sizeof(t_stack*));
-	if (!stack_a)
-		return (0);
-	while (i < argc)
- 		ft_lstadd_back(stack_a, ft_lstnew(int_array[i]));
-   	// current_node = *stack_a;
-    // while (current_node->next != NULL)
-    // {
-    // 	printf("%d", current_node->content);
-    //  	current_node = current_node->next;
-    // }
-    // return (0);
+	return (base * sign);
 }
