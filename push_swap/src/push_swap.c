@@ -6,7 +6,7 @@
 /*   By: hflohil- <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/09 14:00:44 by hflohil-       #+#    #+#                */
-/*   Updated: 2023/03/09 14:00:44 by hflohil-       ########   odam.nl        */
+/*   Updated: 2023/03/24 18:59:05 by hflohil-      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	**convert_to_int(int argc, char *argv[])
 int main(int argc, char *argv[])
 {
 	t_stack	**stack_a;
-	t_stack *current_node;
+	// t_stack *current_node;
 	int		**int_array;
 	int		i;
 
@@ -58,5 +58,5 @@ int main(int argc, char *argv[])
     // 	printf("%d", current_node->content);
     //  	current_node = current_node->next;
     // }
-    // return (0);
+    return (0);
 }
