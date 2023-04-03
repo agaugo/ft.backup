@@ -12,6 +12,22 @@
 
 #include "../include/push_swap.h"
 
+int	find_largest(int *array, int size)
+{
+	int	i;
+	int	temp;
+
+	i = 0;
+	temp = 0;
+	while(i < size)
+	{
+		if (temp < array[i])
+			temp = array[i];
+		i++;
+	}
+	return (temp);
+}
+
 int	ft_isdigit(int c)
 {
 	if (c >= '0' && c <= '9')

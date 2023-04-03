@@ -30,3 +30,5 @@ void ft_lstclear(t_stack **lst, void (*del)(void *));
 //misc
 int	ft_isdigit(int c);
 int	ft_atoi(const char *str);
+void	print_stack(t_stack **stack, char *id);
+int	find_largest(int *array, int size);
