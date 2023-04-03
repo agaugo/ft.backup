@@ -27,8 +27,14 @@ void ft_lstadd_back(t_stack **lst, t_stack *new_node);
 void ft_lstdelone(t_stack *lst, void (*del)(void *));
 void ft_lstclear(t_stack **lst, void (*del)(void *));
 
-//misc
+//int manipulation and reads
 int	ft_isdigit(int c);
 int	ft_atoi(const char *str);
-void	print_stack(t_stack **stack, char *id);
 int	find_largest(int *array, int size);
+int	*convert_to_int(t_stack **stack, int size);
+
+//debugging
+int	print_stack(t_stack **stack, char *id);
+
+//main
+void	radix_sort(t_stack **stack_a, int max_digits);

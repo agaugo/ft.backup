@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        ::::::::            */
-/*   push_swap.c		                                :+:    :+: */
-/*                                                     +:+                    */
-/*   By: hflohil- <marvin@codam.nl>                   +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2023/03/09 14:00:44 by hflohil-       #+#    #+#                */
-/*   Updated: 2023/03/09 14:00:44 by hflohil-       ########   odam.nl        */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "../include/push_swap.h"
 #include <stdio.h>
 
@@ -82,7 +70,7 @@ t_stack *ft_lstnew(void *content) {
 
 // Returns the size of the list (i.e. the amount of Nodes).
 int ft_lstsize(t_stack *lst) {
-  int cnt;
+  int     cnt;
   t_stack *temp;
 
   temp = lst;
