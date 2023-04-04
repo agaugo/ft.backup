@@ -38,3 +38,10 @@ int	print_stack(t_stack **stack, char *id);
 
 //main
 void	radix_sort(t_stack **stack_a, int max_digits);
+int		small_data(t_stack	**stack_a);
+
+
+//swaps
+int	swap(t_stack **stack, char id);
+int	in_order(t_stack **stack);
+int	rotate(t_stack **stack, char id);

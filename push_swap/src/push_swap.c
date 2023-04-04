@@ -6,12 +6,43 @@
 
 // }
 
+int		small_data(t_stack	**stack_a)
+{
+	t_stack	**stack_b;
+	t_stack	*node;
+	t_stack *next;
+	t_stack *last;
+	int	i = 1;
+
+	stack_b = malloc(sizeof(t_stack*));
+	node = malloc(sizeof(t_stack*));
+	next = malloc(sizeof(t_stack*));
+	last = malloc(sizeof(t_stack*));
+	if (!stack_b || !node || !next || !last)
+		return (0);
+	node = *stack_a;
+	next = node->next;
+	last = next->next;
+	// printf("%d", ft_atoi(node->content));
+	// printf("%d", ft_atoi(node->content));
+	while (i--)
+	{
+		if (ft_atoi(node->content) >= ft_atoi(next->content))
+		{
+			swap(stack_a, 'a');
+			print_stack(stack_a, "A");
+			rotate(stack_a, 'a');
+		}
+	}
+	print_stack(stack_a, "A");
+	return (1);
+}
+
 int main(int argc, char *argv[])
 {
 	t_stack	**stack_a;
 	char	*temp = NULL;
 	int		i;
-	int		max_digits;
 
 	i = 0;
 	if (argc == 1)
@@ -31,10 +62,7 @@ int main(int argc, char *argv[])
 		i++;
 	}
 	print_stack(stack_a, "A");
-	printf("size of stack: %d\n", argc - 1);
-	max_digits = find_largest(convert_to_int(stack_a, argc - 1), argc - 1);
-	printf("maxdigits: %d", max_digits);
-
-	// radix_sort(stack_a, max_digits);
+	if  (argc <= 5)
+		small_data(stack_a);
     return (0);
 }
