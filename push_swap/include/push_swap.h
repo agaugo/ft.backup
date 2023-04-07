@@ -31,10 +31,10 @@ void    ft_lstclear(t_stack **lst, void (*del)(void *));
 void	  ft_delfirst(t_stack **stack_a);
 
 //int manipulation and reads
-int	ft_isdigit(int c);
-int	ft_atoi(const char *str);
-int	find_largest(int *array, int size);
-int	*convert_to_int(t_stack **stack, int size);
+int   	ft_isdigit(int c);
+int	    ft_atoi(const char *str);
+int	    find_largest(int *array, int size);
+int	    *convert_to_int(t_stack **stack, int size);
 
 
 //debugging
@@ -44,8 +44,8 @@ int	    print_stack(t_stack **stack, char *id);
 void		small_data(t_stack	**stack_a, t_stack	**stack_b);
 
 //swaps
-void	push(t_stack **source, t_stack **target, char id);
-void	swap(t_stack **stack, char id);
-int	  in_order(t_stack **stack);
-int	  rotate(t_stack **stack, char id);
+void	  push(t_stack **source, t_stack **target, char id);
+void	  swap(t_stack **stack, char id);
+int	    in_order(t_stack **stack);
+int	    rotate(t_stack **stack, char id);
 
