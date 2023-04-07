@@ -1,83 +1,43 @@
 #include "../include/push_swap.h"
 #include <stdio.h>
 
-// Add node to the end of the list, tail.
-void ft_lstadd_back(t_stack **lst, t_stack *new_node) {
-  t_stack *tail;
+/*
+swap(stack, id)
 
-  if (!new_node)
-    return;
-  if (!*lst) {
-    *lst = new_node;
-    return;
-  }
-  tail = ft_lstlast(*lst);
-  tail->next = new_node;
+sa (swap a): Swap the first 2 elements at the top of stack a. Do nothing if there is only one or no elements.
+sb (swap b): Swap the first 2 elements at the top of stack b. Do nothing if there is only one or no elements.
+ss : sa and sb at the same time.
+*/
+
+void	swap(t_stack **stack, char id)
+{
+	t_stack *second;
+
+	second = (*stack)->next;
+	(*stack)->next = second->next;
+	second->next = (*stack);
+	(*stack) = second;
+	if (id != 'x')
+		printf("s%c\n", id);
 }
 
-// Add node to the front of the list, head.
-void ft_lstadd_front(t_stack **lst, t_stack *new_node) {
-  new_node->next = *lst;
-  *lst = new_node;
+/*
+push (stack a, stack b, id)
+
+pa (push a): Take the first element at the top of b and put it at the top of a. Do nothing if b is empty.
+pb (push b): Take the first element at the top of a and put it at the top of b. Do nothing if a is empty.
+*/
+
+void	push(t_stack **source, t_stack **target, char id)
+{
+	t_stack	*new_node;
+
+	new_node = ft_lstnew((*source)->content);
+	ft_lstadd_front(target, new_node);
+	ft_delfirst(source);
+	printf("p%c\n", id);
 }
+//rotate(stack, id)
 
-// Clears and frees entire list.
-void ft_lstclear(t_stack **lst, void (*del)(void *)) {
-  t_stack *next_temp;
-  t_stack *node;
+//rev_rotate(stack, id)
 
-  if (!*lst || !*del)
-    return;
-  node = *lst;
-  next_temp = node->next;
-  while (next_temp != NULL) {
-    ft_lstdelone(node, del);
-    node = next_temp;
-    next_temp = node->next;
-  }
-  ft_lstdelone(node, del);
-  *lst = NULL;
-}
-
-// Clears and frees a singular Node.
-void ft_lstdelone(t_stack *lst, void (*del)(void *)) {
-  if (!lst)
-    return;
-  del(lst->content);
-  free(lst);
-}
-
-// Returns a pointer to the last Node in the list.
-t_stack *ft_lstlast(t_stack *lst) {
-  if (!lst)
-    return (NULL);
-  while (lst->next != NULL)
-    lst = lst->next;
-  return (lst);
-}
-
-// Creates a new list containing a pointer, specified in parameters.
-t_stack *ft_lstnew(void *content) {
-  t_stack *node;
-
-  node = (t_stack *)malloc(sizeof(t_stack));
-  if (!node)
-    return (NULL);
-  node->content = content;
-  node->next = NULL;
-  return (node);
-}
-
-// Returns the size of the list (i.e. the amount of Nodes).
-int ft_lstsize(t_stack *lst) {
-  int     cnt;
-  t_stack *temp;
-
-  temp = lst;
-  cnt = 0;
-  while (temp != NULL) {
-    temp = temp->next;
-    cnt++;
-  }
-  return (cnt);
-}

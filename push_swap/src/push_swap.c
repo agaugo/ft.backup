@@ -1,68 +1,49 @@
 #include "../include/push_swap.h"
 #include <stdio.h>
 
-// void	merge_sort(t_stack **stack_a, int max_digits)
+// void	big_data()
 // {
 
 // }
-
-int		small_data(t_stack	**stack_a)
+void		small_data(t_stack	**stack_a, t_stack	**stack_b)
 {
-	t_stack	**stack_b;
-	t_stack	*node;
-	t_stack *next;
-	t_stack *last;
-	int	i = 1;
-
-	stack_b = malloc(sizeof(t_stack*));
-	node = malloc(sizeof(t_stack*));
-	next = malloc(sizeof(t_stack*));
-	last = malloc(sizeof(t_stack*));
-	if (!stack_b || !node || !next || !last)
-		return (0);
-	node = *stack_a;
-	next = node->next;
-	last = next->next;
-	// printf("%d", ft_atoi(node->content));
-	// printf("%d", ft_atoi(node->content));
-	while (i--)
-	{
-		if (ft_atoi(node->content) >= ft_atoi(next->content))
-		{
-			swap(stack_a, 'a');
-			print_stack(stack_a, "A");
-			rotate(stack_a, 'a');
-		}
-	}
-	print_stack(stack_a, "A");
-	return (1);
+	swap(stack_a, 'a');
+	push(stack_a, stack_b, 'b');
 }
 
 int main(int argc, char *argv[])
 {
 	t_stack	**stack_a;
+	t_stack **stack_b;
 	char	*temp = NULL;
 	int		i;
 
-	i = 0;
+	i = 1;
 	if (argc == 1)
 	{
 		write(1, "Error: no input.\n", 17);
 		return (0);
 	}
 	stack_a = malloc(sizeof(t_stack*));
-	if (!stack_a)
+	stack_b = malloc(sizeof(t_stack*));
+	if (!stack_a || !stack_b)
 		return (0);
 	*stack_a = NULL;
-	i++;
+	*stack_b = NULL;
 	while (i <= argc)
 	{
 		temp = argv[i];
 		ft_lstadd_back(stack_a, ft_lstnew(temp));
+		ft_lstadd_back(stack_b, ft_lstnew(temp));
 		i++;
 	}
 	print_stack(stack_a, "A");
+	print_stack(stack_b, "B");
+	write(1, "\n", 1);
+	write(1, "\n", 1);
+
+
 	if  (argc <= 5)
-		small_data(stack_a);
+		small_data(stack_a, stack_b);
     return (0);
 }
