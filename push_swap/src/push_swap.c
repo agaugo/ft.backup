@@ -7,14 +7,16 @@
 // }
 void		small_data(t_stack	**stack_a, t_stack	**stack_b)
 {
-	// swap(stack_a, 'a');
-	// // print_stack(stack_a, "A");
-	// // print_stack(stack_b, "B");
-	// push(stack_a, stack_b, 'b');
-	print_stack(stack_b, "X");
+	swap(stack_a, 'a');
 	print_stack(stack_a, "A");
+	print_stack(stack_b, "B");
+	push(stack_a, stack_b, 'b');
+	print_stack(stack_a, "A");
+	print_stack(stack_b, "B");
 	rotate(stack_a, 'a');
 	print_stack(stack_a, "A");
+	print_stack(stack_b, "B");
+
 
 }
 
@@ -37,15 +39,15 @@ int main(int argc, char *argv[])
 		return (0);
 	*stack_a = NULL;
 	*stack_b = NULL;
-	while (i <= argc)
+	while (i < argc)
 	{
 		temp = argv[i];
 		ft_lstadd_back(stack_a, ft_lstnew(temp));
 		ft_lstadd_back(stack_b, ft_lstnew(temp));
 		i++;
 	}
-	// print_stack(stack_a, "A");
-	// print_stack(stack_b, "B");
+	print_stack(stack_a, "A");
+	print_stack(stack_b, "B");
 	if  (argc <= 20)
 		small_data(stack_a, stack_b);
     return (0);

@@ -48,8 +48,3 @@ void		small_data(t_stack	**stack_a, t_stack	**stack_b);
 void	  push(t_stack **source, t_stack **target, char id);
 void	  swap(t_stack **stack, char id);
 void	   rotate(t_stack **stack, char id);
-
-
-char	*ft_strdup(const char *s1);
-
-size_t	ft_strlen(const char *s);
