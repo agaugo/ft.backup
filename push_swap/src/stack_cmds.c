@@ -49,10 +49,10 @@ void	rotate(t_stack **stack, char id)
 	*stack = (*stack)->next;
 	while (last_node->next != NULL)
 	{
-		printf("last_node->content = %s\n", last_node->content);
+		printf("last_node->content = %s\n", (char*)last_node->content);
 		last_node = last_node->next;
 	}
-	printf("last_node->content = %s\n", last_node->content);
+	printf("last_node->content = %s\n", (char*)last_node->content);
 
 	last_node->next = first_node;
 
