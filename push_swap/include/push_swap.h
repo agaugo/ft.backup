@@ -35,6 +35,7 @@ int   	ft_isdigit(int c);
 int	    ft_atoi(const char *str);
 int	    find_largest(int *array, int size);
 int	    *convert_to_int(t_stack **stack, int size);
+int	    in_order(t_stack **stack);
 
 
 //debugging
@@ -46,6 +47,9 @@ void		small_data(t_stack	**stack_a, t_stack	**stack_b);
 //swaps
 void	  push(t_stack **source, t_stack **target, char id);
 void	  swap(t_stack **stack, char id);
-int	    in_order(t_stack **stack);
-int	    rotate(t_stack **stack, char id);
+void	   rotate(t_stack **stack, char id);
 
+
+char	*ft_strdup(const char *s1);
+
+size_t	ft_strlen(const char *s);

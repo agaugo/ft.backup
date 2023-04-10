@@ -38,6 +38,27 @@ void	push(t_stack **source, t_stack **target, char id)
 	printf("p%c\n", id);
 }
 //rotate(stack, id)
+void	rotate(t_stack **stack, char id)
+{
+	t_stack *last_node;
+	t_stack *first_node;
 
+
+	first_node = *stack;
+	last_node = *stack;
+	*stack = (*stack)->next;
+	while (last_node->next != NULL)
+	{
+		printf("last_node->content = %s\n", last_node->content);
+		last_node = last_node->next;
+	}
+	printf("last_node->content = %s\n", last_node->content);
+
+	last_node->next = first_node;
+
+	first_node->next = NULL;
+
+	printf("r%c\n", id);
+}
 //rev_rotate(stack, id)
 
