@@ -43,19 +43,23 @@ void	push(t_stack **source, t_stack **target, char id)
 	ft_putchar_fd(id, 1);
 	ft_putchar_fd('\n', 1);
 }
+
 //rotate(stack, id)
 void	rotate(t_stack **stack, char id)
 {
 	t_stack *last_node;
 	t_stack *first_node;
 
-	first_node = *stack;
-	last_node = *stack;
-	*stack = (*stack)->next;
-	while (last_node->next != NULL)
-		last_node = last_node->next;
-	last_node->next = first_node;
-	first_node->next = NULL;
+	if (ft_lstsize(*stack) > 1)
+	{
+		first_node = *stack;
+		last_node = *stack;
+		*stack = (*stack)->next;
+		while (last_node->next != NULL)
+			last_node = last_node->next;
+		last_node->next = first_node;
+		first_node->next = NULL;
+	}
 	ft_putchar_fd('r', 1);
 	ft_putchar_fd(id, 1);
 	ft_putchar_fd('\n', 1);

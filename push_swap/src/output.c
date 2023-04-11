@@ -25,7 +25,7 @@ int	print_stack(t_stack **stack, char *id)
 	t_stack	*current_node;
 
 	if (!(*stack))
-		printf("[Stack Empty]");
+		printf("STACK %s:\n [STACK EMPTY]", id);
 	else
 	{
 		current_node = *stack;

@@ -1,16 +1,43 @@
 #include "../include/push_swap.h"
 #include <stdio.h>
 
-// void	big_data()
-// {
 
-// }
-void		small_data(t_stack	**stack_a, t_stack	**stack_b)
+void	micro_alg(t_stack	**stack_a, t_stack	**stack_b)
 {
-	swap(stack_a, 'a');
-	push(stack_a, stack_b, 'b');
-	rotate(stack_a, 'a');
-	rev_rotate(stack_b, 'a');
+	t_stack	*node;
+	int	size;
+
+	node = *stack_a;
+	size = ft_lstsize(node) - 1;
+	if (!in_order(stack_a))
+	{
+		if (ft_atoi((*stack_a)->content) > ft_atoi((*stack_a)->next->content))
+		{
+			swap(stack_a, 'a');
+			push(stack_a, stack_b, 'b');
+		}
+		while (size > 1)
+		{
+			if (ft_atoi((*stack_a)->content) > ft_atoi((*stack_a)->next->content))
+			{
+				swap(stack_a, 'a');
+				push(stack_a, stack_b, 'b');
+			}
+			else
+				push(stack_a, stack_b, 'b');
+			size--;
+		}
+		push(stack_a, stack_b, 'b');
+		size = ft_lstsize(*stack_b);
+		while (size > 1)
+		{
+			push(stack_b, stack_a, 'a');
+			size--;
+		}
+		push(stack_b, stack_a, 'a');
+	}
+	if (!in_order(stack_a))
+		micro_alg(stack_a, stack_b);
 }
 
 int main(int argc, char *argv[])
@@ -39,8 +66,10 @@ int main(int argc, char *argv[])
 		i++;
 	}
 	print_stack(stack_a, "A");
-	print_stack(stack_b, "B");
-	if  (argc <= 20)
-		small_data(stack_a, stack_b);
+	if (argc == 3 && !in_order(stack_a))
+		swap(stack_a, 'a');
+	if (argc <= 5)
+		micro_alg(stack_a, stack_b);
+	print_stack(stack_a, "A");
     return (0);
 }

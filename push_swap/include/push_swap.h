@@ -46,7 +46,7 @@ void	ft_putchar_fd(char c, int fd);
 int	    print_stack(t_stack **stack, char *id);
 
 //main
-void		small_data(t_stack	**stack_a, t_stack	**stack_b);
+void		micro_alg(t_stack	**stack_a, t_stack	**stack_b);
 
 //swaps
 void	  push(t_stack **source, t_stack **target, char id);

@@ -101,11 +101,12 @@ int	in_order(t_stack **stack)
 
 	node = *stack;
 	next = node->next;
-	while (next->next != NULL)
+	while (next != NULL)
 	{
-		if (node->content >= next->content)
+		if ((ft_atoi(node->content) > ft_atoi(next->content)))
 			return (0);
 		node = node->next;
+    next = next->next;
 	}
 	return (1);
 }
