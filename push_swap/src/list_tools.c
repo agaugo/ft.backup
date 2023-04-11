@@ -93,3 +93,19 @@ int ft_lstsize(t_stack *lst) {
   }
   return (cnt);
 }
+
+int	in_order(t_stack **stack)
+{
+	t_stack *node;
+	t_stack	*next;
+
+	node = *stack;
+	next = node->next;
+	while (next->next != NULL)
+	{
+		if (node->content >= next->content)
+			return (0);
+		node = node->next;
+	}
+	return (1);
+}

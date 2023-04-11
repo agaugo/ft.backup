@@ -37,6 +37,10 @@ int	    find_largest(int *array, int size);
 int	    *convert_to_int(t_stack **stack, int size);
 int	    in_order(t_stack **stack);
 
+//Prints
+void	ft_putstr_fd(char *s, int fd);
+void	ft_putchar_fd(char c, int fd);
+
 
 //debugging
 int	    print_stack(t_stack **stack, char *id);
@@ -47,4 +51,6 @@ void		small_data(t_stack	**stack_a, t_stack	**stack_b);
 //swaps
 void	  push(t_stack **source, t_stack **target, char id);
 void	  swap(t_stack **stack, char id);
-void	   rotate(t_stack **stack, char id);
+void	  rotate(t_stack **stack, char id);
+void	  rev_rotate(t_stack **stack, char id);
+

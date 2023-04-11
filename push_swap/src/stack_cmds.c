@@ -18,7 +18,11 @@ void	swap(t_stack **stack, char id)
 	second->next = (*stack);
 	(*stack) = second;
 	if (id != 'x')
-		printf("s%c\n", id);
+	{
+		ft_putchar_fd('s', 1);
+		ft_putchar_fd(id, 1);
+		ft_putchar_fd('\n', 1);
+	}
 }
 
 /*
@@ -35,7 +39,9 @@ void	push(t_stack **source, t_stack **target, char id)
 	new_node = ft_lstnew((*source)->content);
 	ft_lstadd_front(target, new_node);
 	ft_delfirst(source);
-	printf("p%c\n", id);
+	ft_putchar_fd('p', 1);
+	ft_putchar_fd(id, 1);
+	ft_putchar_fd('\n', 1);
 }
 //rotate(stack, id)
 void	rotate(t_stack **stack, char id)
@@ -50,8 +56,30 @@ void	rotate(t_stack **stack, char id)
 		last_node = last_node->next;
 	last_node->next = first_node;
 	first_node->next = NULL;
-	printf("r%c\n", id);
+	ft_putchar_fd('r', 1);
+	ft_putchar_fd(id, 1);
+	ft_putchar_fd('\n', 1);
 }
 
 //rev_rotate(stack, id)
 
+void	rev_rotate(t_stack **stack, char id)
+{
+	t_stack	*first_node;
+	t_stack *new_last;
+	t_stack *last_node;
+	
+	first_node = *stack;
+	last_node = first_node;
+	new_last = first_node;
+	while (last_node->next != NULL)
+		last_node = last_node->next;
+	last_node->next = first_node;
+	while (new_last->next != last_node)
+		new_last = new_last->next;
+	new_last->next = NULL;
+	*stack = last_node;
+	ft_putstr_fd("rr", 1);
+	ft_putchar_fd(id, 1);
+	ft_putchar_fd('\n', 1);
+}

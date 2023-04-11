@@ -8,16 +8,9 @@
 void		small_data(t_stack	**stack_a, t_stack	**stack_b)
 {
 	swap(stack_a, 'a');
-	print_stack(stack_a, "A");
-	print_stack(stack_b, "B");
 	push(stack_a, stack_b, 'b');
-	print_stack(stack_a, "A");
-	print_stack(stack_b, "B");
 	rotate(stack_a, 'a');
-	print_stack(stack_a, "A");
-	print_stack(stack_b, "B");
-
-
+	rev_rotate(stack_b, 'a');
 }
 
 int main(int argc, char *argv[])
@@ -43,7 +36,6 @@ int main(int argc, char *argv[])
 	{
 		temp = argv[i];
 		ft_lstadd_back(stack_a, ft_lstnew(temp));
-		ft_lstadd_back(stack_b, ft_lstnew(temp));
 		i++;
 	}
 	print_stack(stack_a, "A");
