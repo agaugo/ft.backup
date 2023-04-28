@@ -1,44 +1,24 @@
 #include "../include/push_swap.h"
 #include <stdio.h>
 
-
-void	micro_alg(t_stack	**stack_a, t_stack	**stack_b)
+void	radix(t_stack	**stack_a, t_stack	**stack_b)
 {
-	t_stack	*node;
-	int	size;
+	t_stack *node;
 
 	node = *stack_a;
-	size = ft_lstsize(node) - 1;
-	if (!in_order(stack_a))
+// Puts all negative numbers in stack B to be sorted seperately.
+	while (node)
 	{
-		if (ft_atoi((*stack_a)->content) > ft_atoi((*stack_a)->next->content))
+		if (ft_atoi(node->content) < 0)
 		{
-			swap(stack_a, 'a');
+			while (*stack_a != node)
+				rotate(stack_a, 'a');
 			push(stack_a, stack_b, 'b');
 		}
-		while (size > 1)
-		{
-			if (ft_atoi((*stack_a)->content) > ft_atoi((*stack_a)->next->content))
-			{
-				swap(stack_a, 'a');
-				push(stack_a, stack_b, 'b');
-			}
-			else
-				push(stack_a, stack_b, 'b');
-			size--;
-		}
-		push(stack_a, stack_b, 'b');
-		size = ft_lstsize(*stack_b);
-		while (size > 1)
-		{
-			push(stack_b, stack_a, 'a');
-			size--;
-		}
-		push(stack_b, stack_a, 'a');
+		node = node->next;
 	}
-	if (!in_order(stack_a))
-		micro_alg(stack_a, stack_b);
 }
+
 
 int main(int argc, char *argv[])
 {
@@ -65,11 +45,9 @@ int main(int argc, char *argv[])
 		ft_lstadd_back(stack_a, ft_lstnew(temp));
 		i++;
 	}
-	print_stack(stack_a, "A");
-	if (argc == 3 && !in_order(stack_a))
-		swap(stack_a, 'a');
+	// if (argc == 3 && !in_order(stack_a))
+	// 	swap(stack_a, 'a');
 	if (argc <= 5)
-		micro_alg(stack_a, stack_b);
-	print_stack(stack_a, "A");
+		radix(stack_a, stack_b);
     return (0);
 }
