@@ -1,24 +1,20 @@
 #include "../include/push_swap.h"
 #include <stdio.h>
 
-void	radix(t_stack	**stack_a, t_stack	**stack_b)
+void	fill_index(t_stack **stack_a)
 {
-	t_stack *node;
+	t_stack	*node;
+	int		i;
 
-	node = *stack_a;
-// Puts all negative numbers in stack B to be sorted seperately.
+	i = 0;
+	node = find_smallest(stack_a);
 	while (node)
 	{
-		if (ft_atoi(node->content) < 0)
-		{
-			while (*stack_a != node)
-				rotate(stack_a, 'a');
-			push(stack_a, stack_b, 'b');
-		}
-		node = node->next;
+		node->index = i;
+		node = find_smallest(stack_a);
+		i++;
 	}
 }
-
 
 int main(int argc, char *argv[])
 {
@@ -45,9 +41,7 @@ int main(int argc, char *argv[])
 		ft_lstadd_back(stack_a, ft_lstnew(temp));
 		i++;
 	}
-	// if (argc == 3 && !in_order(stack_a))
-	// 	swap(stack_a, 'a');
-	if (argc <= 5)
-		radix(stack_a, stack_b);
+	fill_index(stack_a);
+	print_stack(stack_a, "A");
     return (0);
 }

@@ -7,7 +7,7 @@ void ft_lstadd_back(t_stack **lst, t_stack *new_node) {
 
   if (!new_node)
     return;
-  if (!*lst) {
+  if (!*lst) { 
     *lst = new_node;
     return;
   }
@@ -76,6 +76,7 @@ t_stack *ft_lstnew(void *content) {
   if (!node)
     return (NULL);
   node->content = content;
+  node->index = -1;
   node->next = NULL;
   return (node);
 }

@@ -1,47 +1,39 @@
 #include "../include/push_swap.h"
 
-int	*convert_to_int(t_stack **stack, int size)
+// int	*convert_to_int(t_stack **stack, int size)
+// {
+// 	int	i;
+// 	int	*array;
+// 	t_stack *scan_node;
+
+// 	array = malloc(sizeof(int) * size);
+// 	if (!array)
+// 		return (0);
+// 	scan_node = *stack;
+// 	i = 0;
+// 	while (scan_node->next != NULL)
+// 	{
+// 		array[i] = ft_atoi(scan_node->content);
+// 		scan_node = scan_node->next;
+// 		i++;
+// 	}
+// 	return (array);
+// }
+
+t_stack	*find_smallest(t_stack **stack)
 {
-	int	i;
-	int	*array;
-	t_stack *scan_node;
+	t_stack	*temp;
+	t_stack	*node;
 
-	array = malloc(sizeof(int) * size);
-	if (!array)
-		return (0);
-	scan_node = *stack;
-	i = 0;
-	while (scan_node->next != NULL)
+	temp = *stack;
+	node = (*stack)->next;
+	while(node)
 	{
-		array[i] = ft_atoi(scan_node->content);
-		scan_node = scan_node->next;
-		i++;
+		if (ft_atoi(temp->content) > ft_atoi(node->content) && node->index == -1)
+			temp = node;
+		node = node->next;
 	}
-	return (array);
-}
-
-int	find_largest(int *array, int size)
-{
-	int	i;
-	int	temp;
-
-	i = 0;
-	temp = 0;
-	while(i < size)
-	{
-		if (temp < array[i])
-			temp = array[i];
-		i++;
-	}
-	i = 0;
-	if (temp == 0)
-		return (1);
-	while (temp != 0)
-	{
-		temp = temp / 10;
-		i++;
-	}
-	return (i);
+	return (temp);
 }
 
 int	ft_isdigit(int c)
