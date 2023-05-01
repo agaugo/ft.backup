@@ -19,6 +19,24 @@ t_stack *find_smallest(t_stack **stack)
 	return (temp);
 }
 
+t_stack *find_biggest(t_stack **stack)
+{
+	t_stack *node;
+	t_stack *temp;
+
+	node = *stack;
+	temp = NULL;
+	while (node)
+	{
+		if (temp == NULL && node->index == -1)
+			temp = node;
+		if (node->index == -1 && ft_atoi(node->content) > ft_atoi(temp->content))
+			temp = node;
+		node = node->next;
+	}
+	return (temp);
+}
+
 int	ft_isdigit(int c)
 {
 	if (c >= '0' && c <= '9')

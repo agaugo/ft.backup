@@ -32,8 +32,8 @@ int	print_stack(t_stack **stack, char *id)
 		printf("STACK: %s\n", id);
 		while (current_node != NULL)
 		{
-			printf("| content = %s ", (char*)current_node->content);
-			printf("index = %d ", current_node->index);
+			printf("| %s ", (char*)current_node->content);
+			// printf("index = %d ", current_node->index);
 			current_node = current_node->next;
 		}
 	}	

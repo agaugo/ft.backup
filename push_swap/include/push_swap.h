@@ -35,6 +35,7 @@ void	  ft_delfirst(t_stack **stack_a);
 int   	ft_isdigit(int c);
 int	    ft_atoi(const char *str);
 t_stack *find_smallest(t_stack **stack);
+t_stack *find_biggest(t_stack **stack);
 int	    *convert_to_int(t_stack **stack, int size);
 int	    in_order(t_stack **stack);
 int     index_check(t_stack **stack);
@@ -50,6 +51,7 @@ int	    print_stack(t_stack **stack, char *id);
 //main
 void    radix_sort(t_stack **stack_a, t_stack **stack_b);
 void    fill_index(t_stack **stack);
+void    small_sort(t_stack **stack_a, t_stack **stack_b);
 
 //swaps
 void	  push(t_stack **source, t_stack **target, char id);
