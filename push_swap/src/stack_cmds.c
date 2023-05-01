@@ -36,7 +36,7 @@ void	push(t_stack **source, t_stack **target, char id)
 {
 	t_stack	*new_node;
 
-	new_node = ft_lstnew((*source)->content);
+	new_node = ft_lstnew((*source)->content, (*source)->index);
 	ft_lstadd_front(target, new_node);
 	ft_delfirst(source);
 	ft_putchar_fd('p', 1);

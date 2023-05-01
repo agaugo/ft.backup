@@ -1,17 +1,46 @@
 #include "../include/push_swap.h"
 #include <stdio.h>
 
-void	fill_index(t_stack **stack_a)
+void	push_all(t_stack **source, t_stack **target, char id)
 {
-	t_stack	*node;
+	while (*source)
+		push(source, target, id);
+}
+
+void	radix_sort(t_stack **stack_a, t_stack **stack_b)
+{
+	t_stack	*scan_a;
+	int		size;
 	int		i;
 
 	i = 0;
-	node = find_smallest(stack_a);
-	while (node)
+	scan_a = *stack_a;
+	while (!in_order(stack_a))
 	{
-		node->index = i;
-		node = find_smallest(stack_a);
+		size = ft_lstsize(*stack_a);
+		while (size--)
+		{
+			scan_a = *stack_a;
+			if ((scan_a->index >> i) & 1)
+				rotate(stack_a, 'a');
+			else
+				push(stack_a, stack_b, 'b');
+		}
+		push_all(stack_b, stack_a, 'a');
+		i++;
+	}
+}
+
+void	fill_index(t_stack **stack_a)
+{
+	int		i;
+	int		size;
+
+	size = ft_lstsize(*stack_a);
+	i = 0;
+	while (i < size)
+	{
+		find_smallest(stack_a)->index = i;
 		i++;
 	}
 }
@@ -38,10 +67,17 @@ int main(int argc, char *argv[])
 	while (i < argc)
 	{
 		temp = argv[i];
-		ft_lstadd_back(stack_a, ft_lstnew(temp));
+		ft_lstadd_back(stack_a, ft_lstnew(temp, -1));
 		i++;
 	}
-	fill_index(stack_a);
 	print_stack(stack_a, "A");
+	print_stack(stack_b, "B");
+	if (argc >= 5)
+	{
+		fill_index(stack_a);
+		radix_sort(stack_a, stack_b);
+	}
+	print_stack(stack_a, "A");
+	print_stack(stack_b, "B");
     return (0);
 }

@@ -22,7 +22,7 @@ typedef struct s_stack {
 } t_stack;
 
 //list commands
-t_stack *ft_lstnew(void *content);
+t_stack *ft_lstnew(void *content, int index);
 void    ft_lstadd_front(t_stack **lst, t_stack *new_node);
 int     ft_lstsize(t_stack *lst);
 t_stack *ft_lstlast(t_stack *lst);
@@ -34,9 +34,10 @@ void	  ft_delfirst(t_stack **stack_a);
 //int manipulation and reads
 int   	ft_isdigit(int c);
 int	    ft_atoi(const char *str);
-t_stack	*find_smallest(t_stack **stack);
+t_stack *find_smallest(t_stack **stack);
 int	    *convert_to_int(t_stack **stack, int size);
 int	    in_order(t_stack **stack);
+int     index_check(t_stack **stack);
 
 //Prints
 void	ft_putstr_fd(char *s, int fd);
@@ -47,12 +48,13 @@ void	ft_putchar_fd(char c, int fd);
 int	    print_stack(t_stack **stack, char *id);
 
 //main
-void		radix(t_stack	**stack_a, t_stack	**stack_b);
-void    fill_index(t_stack **stack_a);
+void    radix_sort(t_stack **stack_a, t_stack **stack_b);
+void    fill_index(t_stack **stack);
 
 //swaps
 void	  push(t_stack **source, t_stack **target, char id);
 void	  swap(t_stack **stack, char id);
 void	  rotate(t_stack **stack, char id);
 void	  rev_rotate(t_stack **stack, char id);
+void    push_all(t_stack **source, t_stack **target, char id);
 
