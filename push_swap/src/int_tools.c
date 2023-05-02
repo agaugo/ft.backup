@@ -69,10 +69,10 @@ int	ft_isdigit(int c)
 		return (0);
 }
 
-int	ft_atoi(const char *str)
+long int	ft_atoi(const char *str)
 {
-	int				base;
-	int				sign;
+	long int	base;
+	long int	sign;
 
 	base = 0;
 	sign = 1;
