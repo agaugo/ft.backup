@@ -13,40 +13,40 @@
 #include "../include/push_swap.h"
 #include <stdio.h>
 
-// Add node to the front of the list, head.
-void	ft_lstadd_front(t_stack **lst, t_stack *new_node)
+void	ft_putstr_fd(char *s, int fd)
 {
-	new_node->next = *lst;
-	*lst = new_node;
-}
+	int	i;
 
-void	ft_delfirst(t_stack **stack)
-{
-	t_stack	*temp;
-
-	if (*stack)
+	i = 0;
+	while (s[i] != '\0')
 	{
-		temp = *stack;
-		*stack = (*stack)->next;
-		ft_lstdelone(temp);
+		write(fd, &s[i], 1);
+		i++;
 	}
 }
 
-// Clears and frees a singular Node.
-void	ft_lstdelone(t_stack *node)
+void	ft_putchar_fd(char c, int fd)
 {
-	if (!node)
-		return ;
-	free(node);
-	node = NULL;
+	write(fd, &c, 1);
 }
 
-// Returns a pointer to the last Node in the list.
-t_stack	*ft_lstlast(t_stack *lst)
+//FOR DEBUGGING ONLY:
+int	print_stack(t_stack **stack, char *id)
 {
-	if (!lst)
-		return (NULL);
-	while (lst->next != NULL)
-		lst = lst->next;
-	return (lst);
+	t_stack	*current_node;
+
+	if (!(*stack))
+		printf("STACK %s:\n [STACK EMPTY]", id);
+	else
+	{
+		current_node = *stack;
+		printf("STACK: %s\n", id);
+		while (current_node != NULL)
+		{
+			printf("| %s ", (char *)current_node->content);
+			current_node = current_node->next;
+		}
+	}	
+	printf("\n");
+	return (1);
 }

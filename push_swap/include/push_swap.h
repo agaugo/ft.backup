@@ -46,17 +46,22 @@ void	ft_putchar_fd(char c, int fd);
 
 
 //debugging
-int	    print_stack(t_stack **stack, char *id);
+int		print_stack(t_stack **stack, char *id);
 
 //main
-void    radix_sort(t_stack **stack_a, t_stack **stack_b);
-void    fill_index(t_stack **stack);
-void    small_sort(t_stack **stack_a, t_stack **stack_b);
+void	radix_sort(t_stack **stack_a, t_stack **stack_b);
+void	fill_index(t_stack **stack);
+void	small_sort(t_stack **stack_a, t_stack **stack_b);
 
 //swaps
-void	  push(t_stack **source, t_stack **target, char id);
-void	  swap(t_stack **stack, char id);
-void	  rotate(t_stack **stack, char id);
-void	  rev_rotate(t_stack **stack, char id);
-void    push_all(t_stack **source, t_stack **target, char id);
+void	push(t_stack **source, t_stack **target, char id);
+void	swap(t_stack **stack, char id);
+void	rotate(t_stack **stack, char id);
+void	rev_rotate(t_stack **stack, char id);
+void	push_all(t_stack **source, t_stack **target, char id);
+
+
+void	exactly_five(t_stack **stack_a, t_stack **stack_b, int efficiency);
+void	sort_three(t_stack **stack_a);
+void	sort_five(t_stack **stack_a, t_stack **stack_b);
 

@@ -16,14 +16,16 @@
 /*
 swap(stack, id)
 
-sa (swap a): Swap the first 2 elements at the top of stack a. Do nothing if there is only one or no elements.
-sb (swap b): Swap the first 2 elements at the top of stack b. Do nothing if there is only one or no elements.
+sa (swap a): Swap the first 2 elements at the top of stack a. 
+	Do nothing if there is only one or no elements.
+sb (swap b): Swap the first 2 elements at the top of stack b. 
+	Do nothing if there is only one or no elements.
 ss : sa and sb at the same time.
 */
 
 void	swap(t_stack **stack, char id)
 {
-	t_stack *second;
+	t_stack	*second;
 
 	second = (*stack)->next;
 	(*stack)->next = second->next;
@@ -40,8 +42,10 @@ void	swap(t_stack **stack, char id)
 /*
 push (stack a, stack b, id)
 
-pa (push a): Take the first element at the top of b and put it at the top of a. Do nothing if b is empty.
-pb (push b): Take the first element at the top of a and put it at the top of b. Do nothing if a is empty.
+pa (push a): Take the first element at the top of b and put it at the top of a. 
+	Do nothing if b is empty.
+pb (push b): Take the first element at the top of a and put it at the top of b. 
+	Do nothing if a is empty.
 */
 
 void	push(t_stack **source, t_stack **target, char id)
@@ -59,8 +63,8 @@ void	push(t_stack **source, t_stack **target, char id)
 //rotate(stack, id)
 void	rotate(t_stack **stack, char id)
 {
-	t_stack *last_node;
-	t_stack *first_node;
+	t_stack	*last_node;
+	t_stack	*first_node;
 
 	if (ft_lstsize(*stack) > 1)
 	{
@@ -82,9 +86,9 @@ void	rotate(t_stack **stack, char id)
 void	rev_rotate(t_stack **stack, char id)
 {
 	t_stack	*first_node;
-	t_stack *new_last;
-	t_stack *last_node;
-	
+	t_stack	*new_last;
+	t_stack	*last_node;
+
 	first_node = *stack;
 	last_node = first_node;
 	new_last = first_node;
@@ -98,4 +102,21 @@ void	rev_rotate(t_stack **stack, char id)
 	ft_putstr_fd("rr", 1);
 	ft_putchar_fd(id, 1);
 	ft_putchar_fd('\n', 1);
+}
+
+int	in_order(t_stack **stack)
+{
+	t_stack	*node;
+	t_stack	*next;
+
+	node = *stack;
+	next = node->next;
+	while (next != NULL)
+	{
+		if ((ft_atoi(node->content) > ft_atoi(next->content)))
+			return (0);
+		node = node->next;
+		next = next->next;
+	}
+	return (1);
 }

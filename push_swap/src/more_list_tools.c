@@ -9,46 +9,58 @@
 /*   Updated: 2022/10/14 19:37:46 by hflohil-      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "../include/push_swap.h"
-#include <stdio.h>
 
-
-void	ft_putstr_fd(char *s, int fd)
+// Creates a new list containing a pointer, specified in parameters.
+t_stack	*ft_lstnew(void *content, int index)
 {
-	int	i;
+	t_stack	*node;
 
-	i = 0;
-	while (s[i] != '\0')
-	{
-		write(fd, &s[i], 1);
-		i++;
-	}
-}
-
-void	ft_putchar_fd(char c, int fd)
-{
-	write(fd, &c, 1);
-}
-
-//FOR DEBUGGING ONLY:
-int	print_stack(t_stack **stack, char *id)
-{
-	t_stack	*current_node;
-
-	if (!(*stack))
-		printf("STACK %s:\n [STACK EMPTY]", id);
+	node = (t_stack *)malloc(sizeof(t_stack));
+	if (!node)
+		return (NULL);
+	node->content = content;
+	if (index == -1)
+		node->index = -1;
 	else
+		node->index = index;
+	node->next = NULL;
+	return (node);
+}
+
+// Returns the size of the list (i.e. the amount of Nodes).
+int	ft_lstsize(t_stack *lst)
+{
+	int		cnt;
+	t_stack	*temp;
+
+	temp = lst;
+	cnt = 0;
+	while (temp != NULL)
 	{
-		current_node = *stack;
-		printf("STACK: %s\n", id);
-		while (current_node != NULL)
-		{
-			printf("| %s ", (char*)current_node->content);
-			// printf("index = %d ", current_node->index);
-			current_node = current_node->next;
-		}
-	}	
-	printf("\n");
-	return (1);
+		temp = temp->next;
+		cnt++;
+	}
+	return (cnt);
+}
+
+void	ft_lstadd_back(t_stack **lst, t_stack *new)
+{
+	t_stack	*tail;
+
+	if (!new)
+		return ;
+	if (!*lst)
+	{
+		*lst = new;
+		return ;
+	}
+	tail = ft_lstlast(*lst);
+	tail->next = new;
+}
+
+void	push_all(t_stack **source, t_stack **target, char id)
+{
+	while (*source)
+		push(source, target, id);
 }

@@ -17,7 +17,7 @@ CFLAGS	= -Werror -Wextra -Wall
 SRC_PATH    =   src/
 OBJ_PATH    =   obj/
 
-SRC         =	push_swap.c stack_cmds.c int_cmds.c output.c list_tools.c
+SRC         =	push_swap.c stack_operations.c int_tools.c test_tools.c list_tools.c more_list_tools.c small_sort.c
 SRCS        =   $(addprefix, $(SRC_PATH), $(SRC))
 
 OBJ         =   $(SRC:.c=.o)
