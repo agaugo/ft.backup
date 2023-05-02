@@ -50,7 +50,7 @@ void	fill_index(t_stack **stack_a)
 	}
 }
 
-void	select_alg(int argc, char *argv[], t_stack **stack_a, t_stack **stack_b)
+int	select_alg(int argc, char *argv[], t_stack **stack_a, t_stack **stack_b)
 {
 	char	*temp;
 	int		i;
@@ -60,16 +60,23 @@ void	select_alg(int argc, char *argv[], t_stack **stack_a, t_stack **stack_b)
 	while (i < argc)
 	{
 		temp = argv[i];
+		if (is_num(temp) == -1)
+			return (-1);
 		ft_lstadd_back(stack_a, ft_lstnew(temp, -1));
 		i++;
 	}
 	fill_index(stack_a);
-	if (argc <= 4)
+	if (argc == 2 || (argc == 3 && in_order(stack_a)))
+		return (0);
+	else if (argc == 3 && !in_order(stack_a))
+		swap(stack_a, 'a');
+	else if (argc <= 4)
 		sort_three(stack_a);
 	else if (argc > 4 && argc <= 6)
 		sort_five(stack_a, stack_b);
 	else
 		radix_sort(stack_a, stack_b);
+	return (0);
 }
 
 int	main(int argc, char *argv[])
@@ -83,11 +90,12 @@ int	main(int argc, char *argv[])
 		return (0);
 	*stack_a = NULL;
 	*stack_b = NULL;
-	if (argc == 1)
+	if (argc == 1 || select_alg(argc, argv, stack_a, stack_b) == -1)
 	{
-		write(1, "Error: no input.\n", 17);
+		write(1, "Error\n", 7);
 		return (0);
 	}
-	select_alg(argc, argv, stack_a, stack_b);
+	print_stack(stack_a, "A");
+	print_stack(stack_b, "B");
 	return (0);
 }
