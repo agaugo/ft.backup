@@ -1,43 +1,40 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   ft_atoi.c                                          :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: hflohil- <marvin@codam.nl>                   +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/10/14 19:37:46 by hflohil-      #+#    #+#                 */
+/*   Updated: 2022/10/14 19:37:46 by hflohil-      ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/push_swap.h"
 #include <stdio.h>
 
 // Add node to the end of the list, tail.
-void ft_lstadd_back(t_stack **lst, t_stack *new_node) {
+void  ft_lstadd_back(t_stack **lst, t_stack *new_node)
+{
   t_stack *tail;
 
   if (!new_node)
     return;
-  if (!*lst) { 
+  if (!*lst)
+  {
     *lst = new_node;
-    return;
+    return ;
   }
   tail = ft_lstlast(*lst);
   tail->next = new_node;
 }
 
 // Add node to the front of the list, head.
-void ft_lstadd_front(t_stack **lst, t_stack *new_node) {
+void  ft_lstadd_front(t_stack **lst, t_stack *new_node)
+{
   new_node->next = *lst;
   *lst = new_node;
 }
-
-// Clears and frees entire list.
-// void ft_lstclear(t_stack **lst, void (*del)(void *)) {
-//   t_stack *next_temp;
-//   t_stack *node;
-
-//   if (!*lst || !*del)
-//     return;
-//   node = *lst;
-//   next_temp = node->next;
-//   while (next_temp != NULL) {
-//     ft_lstdelone(node, del);
-//     node = next_temp;
-//     next_temp = node->next;
-//   }
-//   ft_lstdelone(node, del);
-//   *lst = NULL;
-// }
 
 void	ft_delfirst(t_stack **stack)
 {
@@ -52,7 +49,8 @@ void	ft_delfirst(t_stack **stack)
 }
 
 // Clears and frees a singular Node.
-void ft_lstdelone(t_stack *node) {
+void ft_lstdelone(t_stack *node)
+{
   if (!node)
     return;
   free(node);
@@ -60,7 +58,8 @@ void ft_lstdelone(t_stack *node) {
 }
 
 // Returns a pointer to the last Node in the list.
-t_stack *ft_lstlast(t_stack *lst) {
+t_stack *ft_lstlast(t_stack *lst)
+{
   if (!lst)
     return (NULL);
   while (lst->next != NULL)
@@ -86,7 +85,8 @@ t_stack *ft_lstnew(void *content, int index)
 }
 
 // Returns the size of the list (i.e. the amount of Nodes).
-int ft_lstsize(t_stack *lst) {
+int ft_lstsize(t_stack *lst)
+{
   int     cnt;
   t_stack *temp;
 

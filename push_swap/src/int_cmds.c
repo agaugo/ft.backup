@@ -1,28 +1,40 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   ft_atoi.c                                          :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: hflohil- <marvin@codam.nl>                   +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/10/14 19:37:46 by hflohil-      #+#    #+#                 */
+/*   Updated: 2022/10/14 19:37:46 by hflohil-      ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/push_swap.h"
 #include <stdio.h>
 
-t_stack *find_smallest(t_stack **stack)
+t_stack	*find_highest_index(t_stack	**stack)
 {
-	t_stack *node;
-	t_stack *temp;
+	t_stack	*node;
+	t_stack	*temp;
 
 	node = *stack;
 	temp = NULL;
 	while (node)
 	{
-		if (temp == NULL && node->index == -1)
+		if (temp == NULL)
 			temp = node;
-		if (node->index == -1 && ft_atoi(node->content) < ft_atoi(temp->content))
+		if (node->index > temp->index)
 			temp = node;
 		node = node->next;
 	}
 	return (temp);
 }
 
-t_stack *find_biggest(t_stack **stack)
+t_stack	*find_smallest(t_stack **stack)
 {
-	t_stack *node;
-	t_stack *temp;
+	t_stack	*node;
+	t_stack	*temp;
 
 	node = *stack;
 	temp = NULL;
@@ -30,7 +42,8 @@ t_stack *find_biggest(t_stack **stack)
 	{
 		if (temp == NULL && node->index == -1)
 			temp = node;
-		if (node->index == -1 && ft_atoi(node->content) > ft_atoi(temp->content))
+		if (node->index == -1 && ft_atoi(node->content)
+			< ft_atoi(temp->content))
 			temp = node;
 		node = node->next;
 	}
@@ -70,4 +83,3 @@ int	ft_atoi(const char *str)
 	}
 	return (base * sign);
 }
-

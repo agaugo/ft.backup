@@ -35,7 +35,7 @@ void	  ft_delfirst(t_stack **stack_a);
 int   	ft_isdigit(int c);
 int	    ft_atoi(const char *str);
 t_stack *find_smallest(t_stack **stack);
-t_stack *find_biggest(t_stack **stack);
+t_stack	*find_highest_index(t_stack	**stack);
 int	    *convert_to_int(t_stack **stack, int size);
 int	    in_order(t_stack **stack);
 int     index_check(t_stack **stack);
