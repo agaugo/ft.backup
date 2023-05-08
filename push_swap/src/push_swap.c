@@ -70,11 +70,7 @@ int	select_alg(int argc, char *argv[], t_stack **stack_a, t_stack **stack_b)
 		i++;
 	}
 	fill_index(stack_a);
-	if (argc == 2 || (argc == 3 && in_order(stack_a)))
-	{
-		free_all(stack_a, stack_b);
-		return (0);
-	}
+	if (argc == 2 || (argc == 3 && in_order(stack_a)));
 	else if (argc == 3 && !in_order(stack_a))
 		swap(stack_a, 'a');
 	else if (argc <= 4)
@@ -83,6 +79,7 @@ int	select_alg(int argc, char *argv[], t_stack **stack_a, t_stack **stack_b)
 		sort_five(stack_a, stack_b);
 	else
 		radix_sort(stack_a, stack_b);
+	free_all(stack_a, stack_b);
 	return (0);
 }
 

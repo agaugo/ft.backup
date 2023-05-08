@@ -12,14 +12,14 @@
 
 #include "../include/push_swap.h"
 
-void	ft_lstclear(t_stack **lst)
+void	ft_lstclear(t_stack **stack)
 {
 	t_stack	*next_temp;
 	t_stack	*node;
 
-	if (!*lst)
+	if (!*stack)
 		return ;
-	node = *lst;
+	node = *stack;
 	next_temp = node->next;
 	while (next_temp != NULL)
 	{
@@ -28,5 +28,5 @@ void	ft_lstclear(t_stack **lst)
 		next_temp = node->next;
 	}
 	free(node);
-	*lst = NULL;
+	*stack = NULL;
 }
