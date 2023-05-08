@@ -30,7 +30,6 @@ int			ft_lstsize(t_stack *lst);
 t_stack		*ft_lstlast(t_stack *lst);
 void		ft_lstadd_back(t_stack **lst, t_stack *new_node);
 void		ft_lstdelone(t_stack *node);
-void		ft_lstclear(t_stack **lst, void (*del)(void *));
 void		ft_delfirst(t_stack **stack_a);
 int			ft_isdigit(int c);
 long int	ft_atoi(const char *str);
@@ -58,5 +57,7 @@ int			select_alg(int argc, char *argv[], t_stack **aa, t_stack **b);
 int			check_duplicates(char *argv[]);
 size_t		ft_strlen(const char *s);
 int			ft_strncmp(const char *s1, const char *s2, size_t n);
+void		free_all(t_stack **stack_a, t_stack **stack_b);
+void		ft_lstclear(t_stack **lst);
 
 #endif

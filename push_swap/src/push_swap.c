@@ -12,6 +12,12 @@
 
 #include "../include/push_swap.h"
 
+void	free_all(t_stack **stack_a, t_stack **stack_b)
+{
+	ft_lstclear(stack_a);
+	ft_lstclear(stack_b);
+}
+
 void	radix_sort(t_stack **stack_a, t_stack **stack_b)
 {
 	t_stack	*scan_a;
@@ -65,7 +71,10 @@ int	select_alg(int argc, char *argv[], t_stack **stack_a, t_stack **stack_b)
 	}
 	fill_index(stack_a);
 	if (argc == 2 || (argc == 3 && in_order(stack_a)))
+	{
+		free_all(stack_a, stack_b);
 		return (0);
+	}
 	else if (argc == 3 && !in_order(stack_a))
 		swap(stack_a, 'a');
 	else if (argc <= 4)
@@ -93,7 +102,9 @@ int	main(int argc, char *argv[])
 	if (select_alg(argc, argv, stack_a, stack_b) == -1)
 	{
 		write(1, "Error\n", 7);
+		free_all(stack_a, stack_b);
 		return (0);
 	}
+	free_all(stack_a, stack_b);
 	return (0);
 }
