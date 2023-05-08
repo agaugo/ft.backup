@@ -20,13 +20,10 @@ void	ft_lstclear(t_stack **stack)
 	if (!*stack)
 		return ;
 	node = *stack;
-	next_temp = node->next;
-	while (next_temp != NULL)
+	while (node != NULL)
 	{
-		free(node);
-		node = next_temp;
-		next_temp = node->next;
+		next_temp = node;
+		ft_lstdelone(node);
+		node = next_temp->next;
 	}
-	free(node);
-	*stack = NULL;
 }

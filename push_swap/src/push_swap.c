@@ -16,6 +16,8 @@ void	free_all(t_stack **stack_a, t_stack **stack_b)
 {
 	ft_lstclear(stack_a);
 	ft_lstclear(stack_b);
+	free(stack_a);
+	free(stack_b);
 }
 
 void	radix_sort(t_stack **stack_a, t_stack **stack_b)
@@ -93,12 +95,14 @@ int	main(int argc, char *argv[])
 	stack_a = malloc(sizeof(t_stack *));
 	stack_b = malloc(sizeof(t_stack *));
 	if (!stack_a || !stack_b)
+	{
 		return (0);
+	}
 	*stack_a = NULL;
 	*stack_b = NULL;
 	if (select_alg(argc, argv, stack_a, stack_b) == -1)
 	{
-		write(1, "Error\n", 7);
+		write(1, "Error\n", 6);
 		free_all(stack_a, stack_b);
 		return (0);
 	}
