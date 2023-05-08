@@ -52,18 +52,16 @@ void	fill_index(t_stack **stack_a)
 
 int	select_alg(int argc, char *argv[], t_stack **stack_a, t_stack **stack_b)
 {
-	char	*temp;
 	int		i;
 
-	temp = NULL;
 	i = 1;
-	while (i++ < argc)
+	while (i < argc)
 	{
-		temp = argv[i];
-		if (is_num(temp) == -1 || ft_atoi(temp) > 2147483647
-			|| ft_atoi(temp) < -2147483648 || check_duplicates(argv) == -1)
+		if (is_num(argv[i]) == -1 || ft_atoi(argv[i]) > 2147483647
+			|| ft_atoi(argv[i]) < -2147483648 || check_duplicates(argv) == -1)
 			return (-1);
-		ft_lstadd_back(stack_a, ft_lstnew(temp, -1));
+		ft_lstadd_back(stack_a, ft_lstnew(argv[i], -1));
+		i++;
 	}
 	fill_index(stack_a);
 	if (argc == 2 || (argc == 3 && in_order(stack_a)))
@@ -97,7 +95,5 @@ int	main(int argc, char *argv[])
 		write(1, "Error\n", 7);
 		return (0);
 	}
-	print_stack(stack_a, "A");
-	print_stack(stack_b, "B");
 	return (0);
 }
