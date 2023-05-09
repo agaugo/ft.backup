@@ -13,13 +13,6 @@
 #include "../include/push_swap.h"
 #include <stdio.h>
 
-// Add node to the front of the list, head.
-void	ft_lstadd_front(t_stack **lst, t_stack *new_node)
-{
-	new_node->next = *lst;
-	*lst = new_node;
-}
-
 void	ft_delfirst(t_stack **stack)
 {
 	t_stack	*temp;
@@ -39,14 +32,4 @@ void	ft_lstdelone(t_stack *node)
 		return ;
 	free(node);
 	node = NULL;
-}
-
-// Returns a pointer to the last Node in the list.
-t_stack	*ft_lstlast(t_stack *lst)
-{
-	if (!lst)
-		return (NULL);
-	while (lst->next != NULL)
-		lst = lst->next;
-	return (lst);
 }

@@ -102,7 +102,7 @@ int	main(int argc, char *argv[])
 	*stack_b = NULL;
 	if (select_alg(argc, argv, stack_a, stack_b) == -1)
 	{
-		write(1, "Error\n", 6);
+		ft_putstr_fd("Error", 2);
 		free_all(stack_a, stack_b);
 		return (0);
 	}
