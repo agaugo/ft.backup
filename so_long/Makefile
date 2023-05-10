@@ -12,7 +12,7 @@
 
 NAME    = so_long
 CC		= gcc
-CFLAGS	= -Werror -Wextra -Wall
+CFLAGS	= -Werror -Wextra -Wall MLX42/libmlx42.a -framework Cocoa -framework OpenGL -framework IOKit -Iinclude -lglfw 
 
 SRC_PATH    =   src/
 OBJ_PATH    =   obj/

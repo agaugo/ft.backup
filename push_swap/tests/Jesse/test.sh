@@ -25,7 +25,7 @@ test_error_input(){
 		leaks_check="KO"
 		leaks_check_color=$BRed
 	fi
-	outcome=$(./push_swap $numbers)
+	outcome=$(./push_swap $numbers 2>&1)
 	if [[ $outcome =~ "Error" ]]; then
 		echo -e "MAX_INT ${BGreen}[OK]${Color_Off} · LEAKS ${leaks_check_color}[$leaks_check]${Color_Off}"
 	else
@@ -41,7 +41,7 @@ test_error_input(){
 		leaks_check="KO"
 		leaks_check_color=$BRed
 	fi
-	outcome=$(./push_swap $numbers)
+	outcome=$(./push_swap $numbers 2>&1)
 	if [[ $outcome =~ "Error" ]]; then
 		echo -e "MIN_INT ${BGreen}[OK]${Color_Off} · LEAKS ${leaks_check_color}[$leaks_check]${Color_Off}"
 	else
@@ -73,7 +73,7 @@ test_error_input(){
 		leaks_check="KO"
 		leaks_check_color=$BRed
 	fi
-	outcome=$(./push_swap $numbers)
+	outcome=$(./push_swap $numbers 2>&1)
 	if [[ $outcome =~ "Error" ]]; then
 		echo -e "DUPLICT ${BGreen}[OK]${Color_Off} · LEAKS ${leaks_check_color}[$leaks_check]${Color_Off}"
 	else
@@ -89,7 +89,7 @@ test_error_input(){
 		leaks_check="KO"
 		leaks_check_color=$BRed
 	fi
-	outcome=$(./push_swap $numbers)
+	outcome=$(./push_swap $numbers 2>&1)
 	if [ -z "$outcome" ]; then
 		echo -e "1 NUMBR ${BGreen}[OK]${Color_Off} · LEAKS ${leaks_check_color}[$leaks_check]${Color_Off}"
 	else
@@ -105,7 +105,7 @@ test_error_input(){
 		leaks_check="KO"
 		leaks_check_color=$BRed
 	fi
-	outcome=$(./push_swap $numbers)
+	outcome=$(./push_swap $numbers 2>&1)
 	if [[ $outcome =~ "Error" ]]; then
 		echo -e "NON_INT ${BGreen}[OK]${Color_Off} · LEAKS ${leaks_check_color}[$leaks_check]${Color_Off}"
 	else

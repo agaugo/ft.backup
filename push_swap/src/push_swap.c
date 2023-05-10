@@ -72,7 +72,8 @@ int	select_alg(int argc, char *argv[], t_stack **stack_a, t_stack **stack_b)
 		i++;
 	}
 	fill_index(stack_a);
-	if (argc == 2 || (argc == 3 && in_order(stack_a)));
+	if (argc == 2 || (argc == 3 && in_order(stack_a)))
+		i = 69;
 	else if (argc == 3 && !in_order(stack_a))
 		swap(stack_a, 'a');
 	else if (argc <= 4)
@@ -95,9 +96,7 @@ int	main(int argc, char *argv[])
 	stack_a = malloc(sizeof(t_stack *));
 	stack_b = malloc(sizeof(t_stack *));
 	if (!stack_a || !stack_b)
-	{
 		return (0);
-	}
 	*stack_a = NULL;
 	*stack_b = NULL;
 	if (select_alg(argc, argv, stack_a, stack_b) == -1)

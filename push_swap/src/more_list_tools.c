@@ -28,7 +28,6 @@ t_stack	*ft_lstnew(void *content, int index)
 	return (node);
 }
 
-// Returns the size of the list (i.e. the amount of Nodes).
 int	ft_lstsize(t_stack *lst)
 {
 	int		cnt;
@@ -57,6 +56,12 @@ void	ft_lstadd_back(t_stack **lst, t_stack *new)
 	}
 	tail = ft_lstlast(*lst);
 	tail->next = new;
+}
+
+void	ft_lstadd_front(t_stack **lst, t_stack *new)
+{
+	new->next = *lst;
+	*lst = new;
 }
 
 void	push_all(t_stack **source, t_stack **target, char id)

@@ -22,8 +22,8 @@ void	ft_lstclear(t_stack **stack)
 	node = *stack;
 	while (node != NULL)
 	{
-		next_temp = node;
-		ft_lstdelone(node);
-		node = next_temp->next;
+		next_temp = node->next;
+		free(node);
+		node = next_temp;
 	}
 }

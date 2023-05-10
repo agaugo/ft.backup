@@ -25,11 +25,19 @@ void	ft_delfirst(t_stack **stack)
 	}
 }
 
-// Clears and frees a singular Node.
 void	ft_lstdelone(t_stack *node)
 {
 	if (!node)
 		return ;
 	free(node);
 	node = NULL;
+}
+
+t_stack	*ft_lstlast(t_stack *lst)
+{
+	if (!lst)
+		return (NULL);
+	while (lst->next != NULL)
+		lst = lst->next;
+	return (lst);
 }
