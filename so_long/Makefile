@@ -12,7 +12,7 @@
 
 NAME    = so_long
 CC		= gcc
-CFLAGS	= -Werror -Wextra -Wall MLX42/libmlx42.a -framework Cocoa -framework OpenGL -framework IOKit -Iinclude -lglfw 
+CFLAGS	= -Werror -Wextra -Wall 
 
 SRC_PATH    =   src/
 OBJ_PATH    =   obj/
@@ -28,13 +28,13 @@ INC         =   -I ./include/
 all: $(OBJ_PATH) $(NAME)
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
-	$(CC) $(CFLAGS) -c $< -o $@ $(INC)
+	$(CC) $(CFLAGS) -Imlx -c $< -o $@ $(INC)
 
 $(OBJ_PATH):
 	mkdir $(OBJ_PATH)
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 
 clean:
 	rm -rf $(OBJ_PATH)
