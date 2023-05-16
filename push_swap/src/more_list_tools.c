@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 #include "../include/push_swap.h"
 
-// Creates a new list containing a pointer, specified in parameters.
 t_stack	*ft_lstnew(void *content, int index)
 {
 	t_stack	*node;

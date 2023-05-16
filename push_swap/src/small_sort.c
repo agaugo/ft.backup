@@ -66,16 +66,12 @@ void	exactly_five(t_stack **stack_a, t_stack **stack_b, int efficiency)
 void	sort_five(t_stack **stack_a, t_stack **stack_b)
 {
 	int	iter_x;
-	// int	iter_y;
-	// int	target;
 	int	efficiency;
 
-	// target = 0;
 	efficiency = 0;
 	if ((*stack_a) == find_highest_index(stack_a))
 		efficiency = 1;
 	iter_x = ft_lstsize(*stack_a) - 3;
-	// iter_y = iter_x;
 	if (iter_x == 2)
 		exactly_five(stack_a, stack_b, efficiency);
 	else
