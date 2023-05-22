@@ -10,38 +10,35 @@
 #                                                                              #
 #******************************************************************************#
 
-NAME    = so_long
-CC		= gcc
-CFLAGS	= -Werror -Wextra -Wall 
+NAME = so_long
+MLX = mlx/libmlx.a
+CC = gcc
+CC_FLAGS = -Wall -Wextra -Werror
+MLX_FLAGS = -Lmlx -lmlx -framework OpenGL -framework AppKit
 
-SRC_PATH    =   src/
-OBJ_PATH    =   obj/
+SRC_DIR = src
+OBJ_DIR = obj
 
-SRC         =	so_long.c
-SRCS        =   $(addprefix, $(SRC_PATH), $(SRC))
+SRCS = $(wildcard $(SRC_DIR)/*.c)
+OBJS = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRCS))
 
-OBJ         =   $(SRC:.c=.o)
-OBJS		=	$(addprefix $(OBJ_PATH), $(OBJ))
-
-INC         =   -I ./include/
-
-all: $(OBJ_PATH) $(NAME)
-
-$(OBJ_PATH)%.o: $(SRC_PATH)%.c
-	$(CC) $(CFLAGS) -Imlx -c $< -o $@ $(INC)
-
-$(OBJ_PATH):
-	mkdir $(OBJ_PATH)
+all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+	$(MAKE) -C mlx
+	$(CC) $(CC_FLAGS) $(MLX_FLAGS) $(OBJS) $(MLX) -o $(NAME)
+
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+	@mkdir -p $(OBJ_DIR)
+	$(CC) $(CC_FLAGS) -c $< -o $@
 
 clean:
-	rm -rf $(OBJ_PATH)
+	rm -rf $(OBJ_DIR)
+	$(MAKE) clean -C mlx
 
-fclean:	clean
+fclean: clean
 	rm -f $(NAME)
 
-re:	fclean all
+re: fclean all
 
 .PHONY: all clean fclean re
