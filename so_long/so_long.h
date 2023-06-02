@@ -17,7 +17,8 @@ typedef	struct	s_data {
 
 //  **** CORE **** //
 
-int		main(void);
-void	pixel_put(t_data	*data, int x, int y, int color);
+int	main(int argc, char *argv[]);
+void	parse_map(int fd, t_data *game);
+
 
 #endif

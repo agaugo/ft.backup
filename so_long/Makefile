@@ -18,18 +18,26 @@ MLX_FLAGS = -Lmlx -lmlx -framework OpenGL -framework AppKit
 
 SRC_DIR = src
 OBJ_DIR = obj
+GNL_DIR = get_next_line
 
-SRCS = $(wildcard $(SRC_DIR)/*.c)
-OBJS = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRCS))
+SRC = so_long.c
+GNL_SRC = get_next_line.c get_next_line_utils.c
+
+SRCS = $(addprefix $(SRC_DIR)/, $(SRC)) $(addprefix $(GNL_DIR)/, $(GNL_SRC))
+OBJS = $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o)) $(addprefix $(OBJ_DIR)/get_next_line/, $(GNL_SRC:.c=.o))
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(MAKE) -C mlx
+	@$(MAKE) -s -C mlx > /dev/null 2>&1
 	$(CC) $(CC_FLAGS) $(MLX_FLAGS) $(OBJS) $(MLX) -o $(NAME)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(OBJ_DIR)
+	$(CC) $(CC_FLAGS) -c $< -o $@
+
+$(OBJ_DIR)/get_next_line/%.o: $(GNL_DIR)/%.c
+	@mkdir -p $(OBJ_DIR)/get_next_line
 	$(CC) $(CC_FLAGS) -c $< -o $@
 
 clean:
