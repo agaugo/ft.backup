@@ -9,10 +9,16 @@
 
 # define IMG_SIZE 32
 
+typedef struct s_player {
+	int	x;
+	int	y;
+} t_player;
+
 typedef	struct	s_data {
-	void	*mlx;
-	void	*win;
-	void	*img;
+	void		*mlx;
+	void		*win;
+	void		*img;
+	t_player	player;
 }	t_data;
 
 //  **** CORE **** //
