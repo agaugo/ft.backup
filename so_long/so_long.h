@@ -17,8 +17,10 @@ typedef	struct	s_data {
 
 //  **** CORE **** //
 
-int	main(int argc, char *argv[]);
+int		main(int argc, char *argv[]);
 void	parse_map(int fd, t_data *game);
+void	player_move(int fd, t_data *game);
+int		key_hook(int keycode, void *p);
 
 
 #endif

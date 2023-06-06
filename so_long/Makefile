@@ -20,7 +20,7 @@ SRC_DIR = src
 OBJ_DIR = obj
 GNL_DIR = get_next_line
 
-SRC = so_long.c
+SRC = so_long.c hooks.c
 GNL_SRC = get_next_line.c get_next_line_utils.c
 
 SRCS = $(addprefix $(SRC_DIR)/, $(SRC)) $(addprefix $(GNL_DIR)/, $(GNL_SRC))
