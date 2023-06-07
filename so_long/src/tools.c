@@ -1,4 +1,14 @@
 #include "../so_long.h"
+#include <stdio.h>
+
+void print2DArray(char **array, int rows, int cols) {
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            printf("%c ", array[i][j]);
+        }
+        printf("\n");
+    }
+}
 
 int ft_strcmp(const char *str1, const char *str2)
 {

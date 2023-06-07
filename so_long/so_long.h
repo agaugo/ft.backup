@@ -18,15 +18,17 @@ typedef	struct	s_data {
 	void		*mlx;
 	void		*win;
 	void		*img;
+	char		**map;
 	t_player	player;
 }	t_data;
 
 //  **** CORE **** //
 
 int		main(int argc, char *argv[]);
-void	parse_map(int fd, t_data *game);
+void	parse_map(int fd, t_data *game, int win_width, int win_height);
 void	player_move(int fd, t_data *game);
 int		key_hook(int keycode, void *p);
+int		ft_strcmp(const char *str1, const char *str2);
 
 
 #endif

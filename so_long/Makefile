@@ -10,21 +10,21 @@
 #                                                                              #
 #******************************************************************************#
 
-NAME = so_long
-MLX = mlx/libmlx.a
-CC = gcc
-CC_FLAGS = -Wall -Wextra -Werror
-MLX_FLAGS = -Lmlx -lmlx -framework OpenGL -framework AppKit
+NAME		= so_long
+MLX			= mlx/libmlx.a
+CC			= gcc
+CC_FLAGS	= -Wall -Wextra -Werror
+MLX_FLAGS	= -Lmlx -lmlx -framework OpenGL -framework AppKit
 
-SRC_DIR = src
-OBJ_DIR = obj
-GNL_DIR = get_next_line
+SRC_DIR 	= src
+OBJ_DIR 	= obj
+GNL_DIR 	= get_next_line
 
-SRC = so_long.c hooks.c handle_map.c
-GNL_SRC = get_next_line.c get_next_line_utils.c
+SRC			= tools.c so_long.c hooks.c handle_map.c
+GNL_SRC 	= get_next_line.c get_next_line_utils.c
 
-SRCS = $(addprefix $(SRC_DIR)/, $(SRC)) $(addprefix $(GNL_DIR)/, $(GNL_SRC))
-OBJS = $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o)) $(addprefix $(OBJ_DIR)/get_next_line/, $(GNL_SRC:.c=.o))
+SRCS		= $(addprefix $(SRC_DIR)/, $(SRC)) $(addprefix $(GNL_DIR)/, $(GNL_SRC))
+OBJS		= $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o)) $(addprefix $(OBJ_DIR)/get_next_line/, $(GNL_SRC:.c=.o))
 
 all: $(NAME)
 
