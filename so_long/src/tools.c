@@ -1,13 +1,17 @@
 #include "../so_long.h"
 #include <stdio.h>
 
-void print2DArray(char **array, int rows, int cols) {
-    for (int i = 0; i < rows; i++) {
-        for (int j = 0; j < cols; j++) {
-            printf("%c ", array[i][j]);
-        }
-        printf("\n");
-    }
+void	free_game(t_data *game)
+{
+	int	col_i;
+
+	col_i = 0;
+	while (col_i < game->map.map_height)
+	{
+		free(game->map.map[col_i]);
+		col_i++;
+	}
+	free(game->map.map);
 }
 
 int ft_strcmp(const char *str1, const char *str2)
